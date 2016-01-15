@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" ng-app="DBC">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dragonball Universe</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-sanitize.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.13.2/select.min.js"></script>
+
+    <link rel=" stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.13.2/select.min.css" />
+</head>
+<body ng-controller="GameController as game" ng-cloak>
+
+    <div class="container">
+        <div ng-include="'Views/menu.html'"></div>
+        <div ng-include="'Views/gameScreen.html'"></div>
+        <!--Leave this blank, this is what sets the background to black.-->
+        <div class="fade_overlay">
+
+        </div>
+    </div>
+
+    <!--Google Analytics-->
+    <script>
+    </script>
+
+    <footer>
+        <script src="Javascript/App.js"></script>
+        <script src="Javascript/Controllers/GameController.js"></script>
+
+        <link rel="stylesheet" href="Css/main.css" />
+        <link rel="stylesheet" href="Css/common.css" />
+    </footer>
+</body>
+</html>

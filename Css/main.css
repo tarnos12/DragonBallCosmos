@@ -1,0 +1,65 @@
+﻿body {
+    background: url('../Images/backgroundgame.jpg') no-repeat;
+    background-size: cover;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:focus {
+    outline: none !important;
+}
+
+.clickableArea {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.main_overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.fade_overlay{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	z-index:1001;
+	-moz-opacity: 0.8;
+	opacity:.80;
+	filter: alpha(opacity=80);
+}
+
+
+/*Intro Screen*/
+.introScreen {
+	position: absolute;
+	top: 15%;
+	left: 25%;
+	width: 50%;
+	height: 70%;
+	padding: 16px;
+	border: 4px solid black;
+	background-color: white;
+	z-index:1002;
+	overflow: auto;
+}
+
+/*Overriding twitter bootstrap*/
+.btn {
+    border-radius: 0;
+}
+.btn:hover {
+    background-color: #000;
+    color: #fff;
+}

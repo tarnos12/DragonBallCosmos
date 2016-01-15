@@ -1,0 +1,42 @@
+﻿[
+    {
+        "Name": "Kame-Sennin(Turtle Hermit)",
+        "Description": "Also known as Muten-Roushi(Master Roshi)",
+        "Base Techniques": [ "Kamehameha", "Mafuba" ]
+    },
+    {
+        "Name": "Hercule",
+        "Description": "Also known as Mr. Satan",
+        "Base Techniques": [ "Strong Punch", "Kick Combo" ]
+    },
+    {
+        "Name": "Mr. Popo",
+        "Description": "Assistant of the Kami(Earth Guardian)",
+        "Base Techniques": [ "Evasion" ]
+    },
+    {
+        "Name": "Yamcha",
+        "Description": "One of the strongest Humans",
+        "Base Techniques": [ "Wolf Fang Fist" ]
+    },
+    {
+        "Name": "Yajirobe",
+        "Description": "Also known as Muten-Roushi(Master Roshi)",
+        "Base Techniques": [ "Sword Slash", "Hikou(Flying)" ]
+    },
+    {
+        "Name": "Tien",
+        "Description": "Has 3rd eye -_-",
+        "Base Techniques": [ "Kikou-Hou" ]
+    },
+    {
+        "Name": "Dende",
+        "Description": "Young Namek with healing powers.",
+        "Base Techniques": [ "Healing(Regeneration)" ]
+    },
+    {
+        "Name": "Krillin",
+        "Description": "Strongest Human on Earth.",
+        "Base Techniques": [ "Kienzan" ]
+    }
+]

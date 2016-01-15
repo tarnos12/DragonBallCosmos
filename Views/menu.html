@@ -1,3 +1,94 @@
-﻿<div>
-    TEST
-</div>
+﻿<div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+                
+                <div ng-show="gameMenu.loadingScreen.state" ng-class="{on:gameMenu.loadingScreen.state}" class="test">
+                        
+                    <div ng-show="gameMenu.startMen.state">
+                        <div class="positionR">
+                            <button class="blockTest" ng-click="gameMenu.charSelect.toggle()" ng-class="{on:gameMenu.startMen.state}">Start</button>
+                        <button>Options</button>
+                        </div>
+                        
+                    </div>
+                    <div ng-show="gameMenu.charSelect.state">
+                         <h3 class="text-center">Everything loaded from json object</h3>
+                            <div class="row" ng-repeat="character in saveList">
+                                <div class="col-xs-8 col-xs-offset-2 border marginBottom backgroundColor">
+                                    <div class="row">
+                                        <div class="col-xs-4">Image</div>
+                                        <div class="col-xs-8">
+                                            <div class="row border marginS">
+                                                <div class="col-xs-3">
+                                                    {{character.Name}}
+                                                </div>
+                                                <div class="col-xs-4">
+                                                    {{'Level: ' + character.Level}}
+                                                </div>
+                                                <div class="col-xs-5">
+                                                    {{'Race: ' + character.Race}}
+                                                </div>
+                                            </div>
+                                            <div class="row border marginS">
+                                                <div class="col-xs-8">
+                                                    {{character.Description}}
+                                                </div>
+                                                <div class="col-xs-4">
+                                                    <button ng-click="gameMenu.charCreate.toggle()">Save Slot {{$index + 1}}</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                  <button style="width:20px;">x</button>
+                            </div>
+                        
+                        <button class="positionT" ng-click="gameMenu.charSelect.toggle()">Back</button>
+                    </div>
+                    <div ng-show="gameMenu.charCreate.state">
+                        <div class="row backgroundColor">
+                            <div class="col-xs-8 col-xs-offset-2">
+                                <div class="row">
+                                    <h3 class="text-center">Character creation</h3>
+                            <div class="col-xs-6">
+                                <input type="text" ng-model="player.name" placeholder="{{'Enter your name'}}" />
+                                <div class="row">
+                                    <h4>Choose a race:</h4>
+                                    <div class="col-xs-12" ng-repeat="(i, race) in raceList track by $index">
+                                        <label><input type="radio" ng-model="player.race" ng-value="race" ng-init="player.race=raceList[0]" /> {{race.Name}}</label>
+                                       
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <h4>Choose your gender:</h4>
+                                    <div class="col-xs-12" ng-repeat="(i, gender) in genderList track by $index">
+                                        <label><input type="radio" ng-model="player.gender" ng-value="gender" ng-init="player.gender=genderList[0]" /> {{gender}}</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <h4>Choose your Master:</h4>
+                                    <div class="col-xs-12" ng-repeat="(i, master) in masterList track by $index">
+                                        <label><input type="radio" ng-model="player.master" ng-value="master" ng-init="player.master=masterList[0]" />{{master.Name}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                Name: {{player.name}}<br />
+                                Race: {{player.race.Name}}<br />
+                                Description: {{player.race.Description}}<br />
+                                Gender: {{player.gender}}<br />
+                                Master: {{player.master.Name}}<br />
+                                Info: {{player.master.Description}}<br />
+                                Techniques:
+                                <ul class="text-capitalize" ng-repeat="info in player.master['Base Techniques']">
+                                    <li>{{info}}</li>
+                                </ul>
+                            </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="positionT" ng-click="gameMenu.charCreate.toggle()">Back</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>

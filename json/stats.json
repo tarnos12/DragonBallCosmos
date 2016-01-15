@@ -1,0 +1,21 @@
+﻿     [
+        {
+            "Name": "Goku",
+            "Level": 100,
+            "Race": "Saiyajin",
+            "Description": "Main character in the series."
+        },
+        {
+            "Name": "Vegeta",
+            "Level": 95,
+            "Race": "Saiyajin",
+            "Description": "Goku's Rival."
+        },
+        {
+            "Name": "Piccolo",
+            "Level": 80,
+            "Race": "Namekian",
+            "Description": "Once known as Demon King(or something)"
+        }
+    ]
+

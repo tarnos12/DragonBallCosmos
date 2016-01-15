@@ -63,3 +63,56 @@ a:focus {
     background-color: #000;
     color: #fff;
 }
+
+
+/* This is my CSS, remove it later if you want*/
+
+   div.test{
+            height:600px;
+        }
+        .positionT{
+            position:absolute;
+            bottom:10%;
+            right:5%;
+        }
+        .positionR{
+            position:absolute;
+            bottom:40%;
+            right:50%;
+        }
+        .blockTest{
+            margin-bottom:5px;
+            display:block;
+        }
+        button{
+            width:90px;
+        }
+        
+.progress{
+    width:50%;
+  border-radius:0;
+  overflow:visible;
+  position:relative;
+  top:10px;
+}
+.progress-bar{
+   background:rgb(75, 152, 211); 
+  -webkit-transition: width 1.5s ease-in-out;
+  transition: width 1.5s ease-in-out;
+}
+.border{
+    border:1px solid;
+}
+.marginS{
+    margin:2px;
+}
+.marginBottom{
+    margin-bottom:5px;
+}
+div.on{
+font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+font-size:medium;
+}
+.backgroundColor{
+background-color:darkorange;
+}

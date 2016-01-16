@@ -1,0 +1,42 @@
+﻿.stats{
+    background-color:orange;
+    height:400px;
+    margin-bottom:10%;
+}
+.inventory{
+    background-color:orange;
+    position:relative;
+    height:300px;
+}
+.helmet{
+    position:absolute;
+    left:50%;
+    top:5%;
+    width:50px;
+    height:50px;
+    border:1px solid;
+}
+.weapon{
+    position:absolute;
+    left:10%;
+    top:20%;
+    width:50px;
+    height:50px;
+    border:1px solid;
+}
+.chest{
+    position:absolute;
+    left:50%;
+    top:20%;
+    width:50px;
+    height:50px;
+    border:1px solid;
+}
+.boots{
+    position:absolute;
+    left:50%;
+    top:40%;
+    width:50px;
+    height:50px;
+    border:1px solid;
+}

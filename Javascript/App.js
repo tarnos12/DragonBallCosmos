@@ -24,6 +24,12 @@ dbcapp.config(function ($routeProvider, $locationProvider) {
     	controller: 'MenuController',
     	controllerAs: 'menuCtrl'
     })
+    .when('/inventory',
+    {
+        templateUrl: 'Views/inventory.html',
+        controller: 'MenuController',
+        controllerAs: 'menuCtrl'
+    })
 	.when('/',
     {
     	templateUrl: 'Views/menu.html',

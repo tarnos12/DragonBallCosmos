@@ -1,6 +1,8 @@
 ﻿body {
     background: url('../Images/backgroundgame.jpg') no-repeat;
     background-size: cover;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size:medium;
 }
 
 a {
@@ -42,17 +44,34 @@ a:focus {
 
 
 /*Intro Screen*/
-.introScreen {
-	position: absolute;
-	top: 15%;
-	left: 25%;
-	width: 50%;
-	height: 70%;
-	padding: 16px;
-	border: 4px solid black;
+
+.introScreenMenu {
+    position: absolute;
+    overflow: auto;
+    
+    top: 35%;
+    left: 35%;
+    width: 50%;
+    height: 70%;
+    
+    padding: 16px;
+    z-index: 1002;
+}
+
+.introScreenData {
+    padding: 16px;
+
+    top: 15%;
+    left: 25%;
+    width: 50%;
+    height: 70%;
+
+    position: absolute;
+    z-index: 1002;
+    overflow: auto;
+
+    border: 4px solid black;
 	background-color: white;
-	z-index:1002;
-	overflow: auto;
 }
 
 /*Overriding twitter bootstrap*/
@@ -67,27 +86,6 @@ a:focus {
 
 /* This is my CSS, remove it later if you want*/
 
-   div.test{
-            height:600px;
-        }
-        .positionT{
-            position:absolute;
-            bottom:10%;
-            right:5%;
-        }
-        .positionR{
-            position:absolute;
-            bottom:40%;
-            right:50%;
-        }
-        .blockTest{
-            margin-bottom:5px;
-            display:block;
-        }
-        button{
-            width:90px;
-        }
-        
 .progress{
     width:50%;
   border-radius:0;
@@ -108,10 +106,6 @@ a:focus {
 }
 .marginBottom{
     margin-bottom:5px;
-}
-div.on{
-font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-font-size:medium;
 }
 .backgroundColor{
 background-color:darkorange;

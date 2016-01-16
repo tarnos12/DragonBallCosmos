@@ -24,6 +24,12 @@ dbcapp.config(function ($routeProvider, $locationProvider) {
     	controller: 'MenuController',
     	controllerAs: 'menuCtrl'
     })
+    //.when('/createChar',
+    //{
+    //    templateUrl: 'Views/charCreation.html',
+    //    controller: 'MenuController',
+    //    controllerAs: 'menuCtrl'
+    //})
     .when('/inventory',
     {
         templateUrl: 'Views/inventory.html',

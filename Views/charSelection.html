@@ -1,0 +1,35 @@
+﻿<div ng-show="gameMenu.charSelect.state" class="introScreenData">
+    <h3 class="text-center">
+        Everything loaded from json object
+    </h3>
+    <div class="row" ng-repeat="character in saveList">
+        <div class="col-xs-8 col-xs-offset-2">
+            <div class="row">
+                <div class="col-xs-4">Image</div>
+                <div class="col-xs-8">
+                    <div class="row border marginS">
+                        <div class="col-xs-3">
+                            {{character.Name}}
+                        </div>
+                        <div class="col-xs-4">
+                            {{'Level: ' + character.Level}}
+                        </div>
+                        <div class="col-xs-5">
+                            {{'Race: ' + character.Race}}
+                        </div>
+                    </div>
+                    <div class="row border marginS">
+                        <div class="col-xs-8">
+                            {{character.Description}}
+                        </div>
+                        <div class="col-xs-4">
+                            <button ng-click="gameMenu.charCreate.toggle()">Save Slot {{$index + 1}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button style="width:20px;">x</button>
+    </div>
+    <button class="btn btn-warning pull-right" ng-click="gameMenu.charSelect.toggle()">Back</button>
+</div>

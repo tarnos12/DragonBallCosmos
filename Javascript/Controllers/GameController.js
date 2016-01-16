@@ -7,6 +7,8 @@ dbcapp.controller(
         $interval,
         $http
        ) {
+
+        //Loading Json Data
         $http.get('json/stats.json').success(function (data) {
             $scope.saveList = data;
         });
@@ -16,6 +18,8 @@ dbcapp.controller(
         $http.get('json/masters.json').success(function (data) {
             $scope.masterList = data;
         });
+
+        //Initial Objects
         $scope.player = {
             name: "",
             race: "",
@@ -23,25 +27,26 @@ dbcapp.controller(
             master: "",
         };
         $scope.genderList = ['Male', 'Female']
+
         $scope.gameMenu = {
             loadingScreen: {
                 state: true,
             },
-            startMen: {
-                state: true,
+            startMenu: {
+                state: false,
             },
             charSelect: {
                 state: false,
                 toggle: function () {
                     this.state = !this.state;
-                    $scope.gameMenu.startMen.state = !this.state;
+                    $scope.gameMenu.startMenu.state = !this.state;
                 }
             },
             charCreate: {
-                state: false,
+                state: true,
                 toggle: function () {
                     this.state = !this.state;
-                    $scope.gameMenu.charSelect.state = !this.state;
+                    $scope.gameMenu.startMenu.state = !this.state;
                 }
             }
         };

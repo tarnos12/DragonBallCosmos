@@ -1,4 +1,105 @@
-﻿/*Custom Controls*/
+﻿/*Margins and Paddings*/
+.margin-top-20 {
+  margin-top: 20px;
+}
+
+.margin-top-5 {
+  margin-top: 5px;
+}
+
+.margin-bottom-20 {
+  margin-bottom: 20px;
+}
+
+.margin-left-15 {
+  margin-left: 15px;
+}
+
+
+/*Custom Controls*/
 .clickable {
     cursor: pointer;
+}
+
+/*Alignment*/
+.align-left {
+    text-align: left;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.align-middle {
+    vertical-align: middle;
+}
+
+/*Font Styles*/
+.font-12pt {
+    font-size: 12pt;
+}
+
+.font-9pt {
+    font-size: 9pt;
+}
+
+.font-8pt {
+    font-size: 8pt;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.font-color-green {
+    color: green;
+}
+
+.font-color-blue {
+    color: blue;
+}
+
+.font-color-lightblue {
+    color: #1C6BA0;
+}
+
+
+.font-color-yellow {
+    color: yellow;
+}
+
+.font-color-orange {
+    color: orange;
+}
+
+.font-color-red {
+    color: red;
+}
+
+
+/*Background Colors*/
+.bg-color-green {
+    background-color: green;
+}
+
+
+/*Custom Controls*/
+.big-banner {
+    padding:15px;
+}
+
+.custom-panel:hover {
+    background-color: #888;
+    color: white;
+}
+
+/*Borders*/
+.all-border {
+    border-width: 1px;
+    border-radius: 2.5px;
+    border-style: solid;
 }

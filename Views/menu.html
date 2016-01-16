@@ -1,16 +1,14 @@
-﻿<div class="row introScreenMenu" ng-show="gameMenu.loadingScreen.state">
+﻿<div class="row introScreenMenu" ng-show="gameMenu.startMenu.state">
     <div class="col-xs-10 col-xs-offset-1">
-        <div ng-class="{on:gameMenu.loadingScreen.state}">
-            <div ng-show="gameMenu.startMenu.state">
-                <div class="row margin-top-5">
-                    <button class="btn btn-primary" ng-click="gameMenu.charCreate.toggle()">New Game</button>
-                </div>
-                <div class="row margin-top-5">
-                    <button class="btn btn-primary" ng-click="gameMenu.charSelect.toggle()">Load Game</button>
-                </div>
-                <div class="row margin-top-5">
-                    <button class="btn btn-primary">Options</button>
-                </div>
+        <div>
+            <div class="row margin-top-5">
+                <button class="btn btn-primary" ng-click="gameMenu.charCreate.toggle()">New Game</button>
+            </div>
+            <div class="row margin-top-5">
+                <button class="btn btn-primary" ng-click="gameMenu.charSelect.toggle()">Load Game</button>
+            </div>
+            <div class="row margin-top-5">
+                <button class="btn btn-primary">Options</button>
             </div>
         </div>
     </div>

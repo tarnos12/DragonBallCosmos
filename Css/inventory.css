@@ -3,10 +3,19 @@
     height:400px;
     margin-bottom:10%;
 }
-.inventory{
+.backgroundHeight{
+    background-color:darkorange;
+    height:400px;
+}
+.equippedHeight{
     background-color:orange;
     position:relative;
     height:300px;
+}
+.heightInventoryBlock{
+    height:50px;
+    border:1px solid;
+    margin-bottom:5px;
 }
 .helmet{
     position:absolute;

@@ -1,45 +1,54 @@
 ﻿<div ng-show="gameMenu.charCreate.state" class="introScreenData">
     <div class="row">
-        <h3 class="text-center">
-            Create your Character
+        <h3 class="text-center">Create your Character
         </h3>
         <hr />
         <div class="form-horizontal">
             <div class="col-xs-6">
-                <input type="text" ng-model="player.name" placeholder="{{'Enter your name'}}" />
+                <input type="text" ng-model="player.name" placeholder="{{'Enter your name'}}" required />
                 <div class="">
                     <h4>Choose a race:</h4>
                     <div class="col-xs-12" ng-repeat="(i, race) in raceList track by $index">
                         <label>
-                            <input type="radio" ng-model="player.race" ng-value="race" ng-init="player.race=raceList[0]" /> {{race.Name}}
+                            <input type="radio" ng-model="player.race" ng-value="race" ng-init="player.race=raceList[0]" />
+                            {{race.Name}}
                         </label>
                     </div>
                 </div>
                 <div class="">
                     <h4>Choose your gender:</h4>
                     <div class="col-xs-12" ng-repeat="(i, gender) in genderList track by $index">
-                        <label><input type="radio" ng-model="player.gender" ng-value="gender" ng-init="player.gender=genderList[0]" /> {{gender}}</label>
+                        <label>
+                            <input type="radio" ng-model="player.gender" ng-value="gender" ng-init="player.gender=genderList[0]" />
+                            {{gender}}</label>
                     </div>
                 </div>
                 <div class="">
                     <h4>Choose your Master:</h4>
                     <div class="col-xs-12" ng-repeat="(i, master) in masterList track by $index">
-                        <label><input type="radio" ng-model="player.master" ng-value="master" ng-init="player.master=masterList[0]" />{{master.Name}}</label>
+                        <label>
+                            <input type="radio" ng-model="player.master" ng-value="master" ng-init="player.master=masterList[0]" />{{master.Name}}</label>
                     </div>
                 </div>
             </div>
             <div class="col-xs-6">
-                Name: {{player.name}}<br />
-                Race: {{player.race.Name}}<br />
-                Description: {{player.race.Description}}<br />
-                Gender: {{player.gender}}<br />
-                Master: {{player.master.Name}}<br />
-                Info: {{player.master.Description}}<br />
-                Techniques:
-                <ul class="text-capitalize" ng-repeat="info in player.master['Base Techniques']">
-                    <li>{{info}}</li>
+                <p>Name: {{player.name}}</p>
+                <p>Race: {{player.race.Name}}</p>
+                <p>Description: {{player.race.Description}}</p>
+                <p>Gender: {{player.gender}}</p>
+                <p>Master: {{player.master.Name}}</p>
+                <p>Info: {{player.master.Description}}</p>
+                <p>Techniques:</p>
+                <ul class="text-capitalize">
+                    <li ng-repeat="info in player.master['Base Techniques']">{{info}}</li>
                 </ul>
+                <h4>Character Stats:</h4>
+                <p ng-repeat="(key, value) in player.totalStats">
+                    <span class="glyphicon glyphicon glyphicon-question-sign" aria-hidden="true" uib-popover="{{player.baseStats[key].description}}" popover-trigger="mouseenter"></span>
+                    <img ng-src="Images/stats/{{key}}.png" uib-popover="{{player.baseStats[key].name}}" popover-trigger="mouseenter"/><span> :{{value()}}</span>
+                </p>
             </div>
+            <button class="btn btn-success" ng-click="submitCharacter()">Submit</button>
         </div>
     </div>
     <button class="btn btn-warning pull-right" ng-click="gameMenu.charCreate.toggle()">Back</button>

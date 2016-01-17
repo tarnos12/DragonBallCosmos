@@ -1,14 +1,38 @@
 ﻿[
     {
         "Name": "Saiyajin",
-        "Description": "Some random description of this race"
+        "Description": "Some random description of this race",
+        "Stats": {
+            "force": 4,
+            "perseverance": 2,
+            "concentration": 1,
+            "speed": 3,
+            "resolution": 3,
+            "kiAttacks": 1
+        }
     },
     {
         "Name": "Namekajin",
-        "Description": "Some random description of this race"
+        "Description": "Some random description of this race",
+        "Stats": {
+            "force": 2,
+            "perseverance": 4,
+            "concentration": 3,
+            "speed": 1,
+            "resolution": 2,
+            "kiAttacks": 2
+        }
     },
     {
         "Name": "Majin",
-        "Description": "Some random description of this race"
+        "Description": "Some random description of this race",
+        "Stats": {
+            "force": 2,
+            "perseverance": 2,
+            "concentration": 2,
+            "speed": 2,
+            "resolution": 2,
+            "kiAttacks": 4
+        }
     }
 ]

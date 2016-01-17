@@ -22,13 +22,14 @@
     <div class="container">
         <div ng-include="'Views/menu.html'"></div>
         <div ng-include="'Views/gameScreen.html'"></div>
+        <div ng-include="'Views/equippedItems.html'"></div>
         <div ng-include="'Views/inventory.html'"></div>
 
         <div ng-include="'Views/charCreation.html'"></div>
         <div ng-include="'Views/charSelection.html'"></div>
 
         <!--Leave this blank, this is what sets the background to black.-->
-        <div class="fade_overlay">
+        <div ng-class="{fade_overlay:gameMenu.loadingScreen.state}">
 
         </div>
     </div>

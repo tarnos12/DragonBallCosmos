@@ -20,17 +20,14 @@
 </head>
 <body ng-controller="GameController as game" ng-cloak>
     <div class="container">
-        <div ng-include="'Views/menu.html'"></div>
-        <div ng-include="'Views/gameScreen.html'"></div>
-        <div ng-include="'Views/equippedItems.html'"></div>
-        <div ng-include="'Views/inventory.html'"></div>
-
+        <!-- Character Creation Html should be at the very top for now, due to ng-init on certain player values -->
         <div ng-include="'Views/charCreation.html'"></div>
         <div ng-include="'Views/charSelection.html'"></div>
-
+        <div ng-include="'Views/gameScreen.html'"></div>
+        <div ng-include="'Views/menu.html'"></div>
+        <div ng-include="'Views/gameTabs.html'"></div>
         <!--Leave this blank, this is what sets the background to black.-->
         <div ng-class="{fade_overlay:gameMenu.loadingScreen.state}">
-
         </div>
     </div>
 

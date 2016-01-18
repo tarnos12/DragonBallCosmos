@@ -1,0 +1,9 @@
+﻿<uib-tabset>
+    <uib-tab heading="Inventory & Stats">
+        <div ng-include="'Views/equippedItems.html'"></div>
+        <div ng-include="'Views/inventory.html'"></div>
+    </uib-tab>
+    <uib-tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disable="tab.disabled">
+        <div ng-include="tab.content"></div>
+    </uib-tab>
+</uib-tabset>

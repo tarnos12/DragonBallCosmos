@@ -1,7 +1,7 @@
 ﻿<div class="row stats">
     <div class="col-xs-12">
         
-<div class="row" ng-class="{on:!gameMenu.loadingScreen.state}">
+<div class="row">
     <div class="col-xs-12">
         <p class="text-center">Character Level</p>
     </div>
@@ -9,16 +9,24 @@
 
 <div class="row">
     <div class="col-xs-4 border">
-        <p>Base stats</p>
+        <uib-progressbar max="max" value="player.healthPerCent()"><span style="color:white; white-space:nowrap;">{{player.health.value}} / {{player.maxHealth.value}}</span></uib-progressbar>
+        <uib-progressbar max="max" value="player.energyPercent()"><span style="color:white; white-space:nowrap;">{{player.energy.value}} / {{player.maxEnergy.value}}</span></uib-progressbar>
+        <button class="btn btn-default" ng-click="random()">Random energy/hp</button>
+       <p ng-repeat="(key, value) in player.totalStats">
+                    <span class="glyphicon glyphicon glyphicon-question-sign" aria-hidden="true" uib-popover="{{player.baseStats[key].description}}" popover-trigger="mouseenter"></span>
+                    <img ng-src="Images/stats/{{key}}.png" uib-popover="{{player.baseStats[key].name}}" popover-trigger="mouseenter"/><span> :{{value()}}</span>
+                </p>
     </div>
     <div class="col-xs-4 equippedHeight border">
-        Inventory
-        <div class="row">
+        
         <div class="helmet">Helmet</div>
         <div class="weapon">Weapon</div>
+        <div class="offHand">OffHand</div>
         <div class="chest">Chest</div>
+        <div class="belt">Belt</div>
+        <div class="wrist">Wrist</div>
         <div class="boots">Boots</div>
-            </div>
+        <div class="special">Special</div>
     </div>
     <div class="col-xs-4 border">
         Secondary stats

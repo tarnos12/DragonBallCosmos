@@ -7,7 +7,7 @@
         "StatIncrease2": "Speed",
         "StatIncrease2Size": "+",
         "StatDecrease1": "Strength",
-        "StatIncrease2": "--"
+        "StatDecrease1Size": "--"
     },
     {
         "Type": "smart",
@@ -17,6 +17,6 @@
         "StatIncrease2": "Speed",
         "StatIncrease2Size": "+",
         "StatDecrease1": "Strength",
-        "StatIncrease2": "--"
+        "StatDecrease1Size": "--"
     }
 ]

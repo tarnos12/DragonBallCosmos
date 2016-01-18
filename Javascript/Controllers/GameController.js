@@ -9,13 +9,13 @@ dbcapp.controller(
        ) {
 
         //Loading Json Data
-        $http.get('json/stats.json').success(function (data) {
+        $http.get('../../json/stats.json').success(function (data) {
             $scope.saveList = data;
         });
-        $http.get('json/races.json').success(function (data) {
+        $http.get('../json/races.json').success(function (data) {
             $scope.raceList = data;
         });
-        $http.get('json/masters.json').success(function (data) {
+        $http.get('../../json/masters.json').success(function (data) {
             $scope.masterList = data;
         });
         $http.get('json/characterList.json').success(function (data) {
@@ -69,6 +69,7 @@ dbcapp.controller(
             },
             gender: "",
             master: "",
+            charType: {},
             inventorySlot: 30
         };
         $scope.random = function () {

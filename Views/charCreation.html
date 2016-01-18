@@ -99,7 +99,6 @@
                     </div>
                     <div class="form-group">
                         <h4>Character type:</h4>
-                        {{characterTypeList}}
                         <div class="btn-group">
                             <label class="btn btn-primary" ng-model="player.charType" uib-btn-radio="charType.Type" ng-repeat="(i, charType) in characterTypeList track by $index">
                                 {{charType.Name}}
@@ -107,6 +106,7 @@
                         </div>
                         {{charType.Type.StatIncrease1}} {{charType.Type.StatIncrease1Size}}
                         {{charType.Type.StatIncrease2}} {{charType.Type.StatIncrease2Size}}
+                        {{charType.Type.StatDecrease1}} {{charType.Type.StatDecrease1Size}}
                     </div>
                 </div>
             </div>

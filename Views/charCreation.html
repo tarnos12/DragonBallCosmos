@@ -1,55 +1,137 @@
 ﻿<div ng-show="gameMenu.charCreate.state" class="introScreenData">
     <div class="row">
-        <h3 class="text-center">Create your Character
+        <h3 class="text-center">
+            Create your Character
         </h3>
         <hr />
-        <div class="form-horizontal">
-            <div class="col-xs-6">
-                <input type="text" ng-model="player.name" placeholder="{{'Enter your name'}}" required />
-                <div class="">
-                    <h4>Choose a race:</h4>
-                    <div class="col-xs-12" ng-repeat="(i, race) in raceList track by $index">
-                        <label>
-                            <input type="radio" ng-model="player.race" ng-value="race" ng-init="player.race=raceList[0]" />
-                            {{race.Name}}
-                        </label>
+        <div class="col-xs-12">
+            <div class="row margin-top-20" ng-show="!raceSelected">
+                <div class="col-lg-4 ">
+                    <!--TODO: Have to make the height/width dynamic-->
+                    <!--TODO: Make this a ng-repeat-->
+                    <div class="panel panel-primary clickable selectionTileMain saiyan" ng-click="selectRace('saiyan', 'Saiyan')">
+                        <div class="panel-body font-allPurpose">
+                            <div class="font-15pt">
+                                Saiyan
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="">
-                    <h4>Choose your gender:</h4>
-                    <div class="col-xs-12" ng-repeat="(i, gender) in genderList track by $index">
-                        <label>
-                            <input type="radio" ng-model="player.gender" ng-value="gender" ng-init="player.gender=genderList[0]" />
-                            {{gender}}</label>
+                <div class="col-lg-4">
+                    <div class="panel panel-primary clickable selectionTileMain namekian" ng-click="selectRace('namekian', 'Namekian')">
+                        <div class="panel-body font-allPurpose">
+                            <div class="font-15pt">
+                                Namekian
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="">
-                    <h4>Choose your Master:</h4>
-                    <div class="col-xs-12" ng-repeat="(i, master) in masterList track by $index">
-                        <label>
-                            <input type="radio" ng-model="player.master" ng-value="master" ng-init="player.master=masterList[0]" />{{master.Name}}</label>
+                <div class="col-lg-4">
+                    <div class="panel panel-primary clickable selectionTileMain freizaRace" ng-click="selectRace('freizaRace', 'Freiza-Race')">
+                        <div class="panel-body font-allPurpose">
+                            <div class="font-15pt">
+                                Freiza-Race
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-primary clickable selectionTileMain majin">
+                        <div class="panel-body font-allPurpose">
+                            <div class="font-15pt">
+                                Majin
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-primary clickable selectionTileMain kai">
+                        <div class="panel-body font-allPurpose">
+                            <div class="font-15pt">
+                                Kai
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-primary clickable selectionTileMain android">
+                        <div class="panel-body font-allPurpose">
+                            <div class="font-15pt">
+                                Android
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xs-6">
-                <p>Name: {{player.name}}</p>
-                <p>Race: {{player.race.Name}}</p>
-                <p>Description: {{player.race.Description}}</p>
-                <p>Gender: {{player.gender}}</p>
-                <p>Master: {{player.master.Name}}</p>
-                <p>Info: {{player.master.Description}}</p>
-                <p>Techniques:</p>
-                <ul class="text-capitalize">
-                    <li ng-repeat="info in player.master['Base Techniques']">{{info}}</li>
-                </ul>
-                <h4>Character Stats:</h4>
-                <p ng-repeat="(key, value) in player.totalStats">
-                    <span class="glyphicon glyphicon glyphicon-question-sign" aria-hidden="true" uib-popover="{{player.baseStats[key].description}}" popover-trigger="mouseenter"></span>
-                    <img ng-src="Images/stats/{{key}}.png" uib-popover="{{player.baseStats[key].name}}" popover-trigger="mouseenter"/><span> :{{value()}}</span>
-                </p>
+            <div class="row margin-top-20" ng-show="raceSelected">
+                <div class="col-lg-4">
+                    <div class="panel panel-primary selectionTileSelected" ng-class="selectedRace.cssClass">
+                        <div class="panel-body font-allPurpose">
+                            <div class="font-15pt">
+                                {{selectedRace.name}}
+                            </div>
+                            <div class="pull-right">
+                                <button class="btn" ng-click="raceSelectBack()">
+                                    back
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="form-group">
+                        <input type="text" class="form-control" ng-model="player.name" placeholder="Enter your name" required />
+                    </div>
+                    <div class="form-group">
+                        <div class="btn-group">
+                            <label class="btn btn-primary" ng-model="player.gender" uib-btn-radio="gender" ng-repeat="(i, gender) in genderList track by $index">
+                                {{gender}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-Group">
+                        <h4>Choose your Master:</h4>
+                        <div class="btn-group">
+                            <label class="btn btn-primary" ng-model="player.master" uib-btn-radio="master" ng-repeat="(i, master) in masterList track by $index">
+                                {{master.Name}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <h4>Character type:</h4>
+                        {{characterTypeList}}
+                        <div class="btn-group">
+                            <label class="btn btn-primary" ng-model="player.charType" uib-btn-radio="charType.Type" ng-repeat="(i, charType) in characterTypeList track by $index">
+                                {{charType.Name}}
+                            </label>
+                        </div>
+                        {{charType.Type.StatIncrease1}} {{charType.Type.StatIncrease1Size}}
+                        {{charType.Type.StatIncrease2}} {{charType.Type.StatIncrease2Size}}
+                    </div>
+                </div>
             </div>
-            <button class="btn btn-success" ng-click="submitCharacter()">Submit</button>
+
         </div>
+        <!--<div class="col-xs-6">
+            <p>Name: {{player.name}}</p>
+            <p>Race: {{player.race.Name}}</p>
+            <p>Description: {{player.race.Description}}</p>
+            <p>Gender: {{player.gender}}</p>
+            <p>Master: {{player.master.Name}}</p>
+            <p>Info: {{player.master.Description}}</p>
+            <p>Techniques:</p>
+            <ul class="text-capitalize">
+                <li ng-repeat="info in player.master['Base Techniques']">{{info}}</li>
+            </ul>
+            <h4>Character Stats:</h4>
+            <p ng-repeat="(key, value) in player.totalStats">
+                <span class="glyphicon glyphicon glyphicon-question-sign" aria-hidden="true" uib-popover="{{player.baseStats[key].description}}" popover-trigger="mouseenter"></span>
+                <img ng-src="Images/stats/{{key}}.png" uib-popover="{{player.baseStats[key].name}}" popover-trigger="mouseenter"/><span> :{{value()}}</span>
+            </p>
+        </div>-->
+
     </div>
-    <button class="btn btn-warning pull-right" ng-click="gameMenu.charCreate.toggle()">Back</button>
+</div>
+<button class="btn btn-success" ng-click="submitCharacter()">Submit</button>
+<button class="btn btn-warning pull-right" ng-click="gameMenu.charCreate.toggle()">Back</button>
 </div>

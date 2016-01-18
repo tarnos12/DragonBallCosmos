@@ -61,10 +61,10 @@ a:focus {
 .introScreenData {
     padding: 16px;
 
-    top: 15%;
-    left: 25%;
-    width: 50%;
-    height: 70%;
+    top: 5%;
+    left: 10%;
+    width: 80%;
+    height: 90%;
 
     position: absolute;
     z-index: 1002;
@@ -83,6 +83,46 @@ a:focus {
     color: #fff;
 }
 
+/*CharSelection*/
+.selectionTileMain {
+    opacity: 0.5;
+    height: 600px;
+    width: 400px;
+}
+    .selectionTileMain:hover {
+        opacity: 1.0;
+    }
+
+.selectionTileSelected {
+    opacity: 1.0;
+    height: 600px;
+    width: 400px;
+}
+
+.saiyan {
+    background: url('../../Images/Races/Saiyan.jpg') no-repeat;
+    background-size: 100% auto;
+}
+.namekian {
+    background: url('../../Images/Races/Namekian.jpg') no-repeat;
+    background-size: 100% auto;
+}
+.freizaRace {
+    background: url('../../Images/Races/Freiza-Race.png') no-repeat;
+    background-size: 100% auto;
+}
+.majin {
+    background: url('../../Images/Races/Majin_Buu.png') no-repeat;
+    background-size: 100% auto;
+}
+.kai {
+    background: url('../../Images/Races/Kai.jpg') no-repeat;
+    background-size: 100% auto;
+}
+.android {
+    background: url('../../Images/Races/Android.jpg') no-repeat;
+    background-size: 100% auto;
+}
 
 /* This is my CSS, remove it later if you want*/
 

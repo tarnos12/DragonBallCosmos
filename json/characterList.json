@@ -1,0 +1,22 @@
+﻿[
+    {
+        "Type": "speed",
+        "Name": "I want to be Fast.",
+        "StatIncrease1": "Speed",
+        "StatIncrease1Size": "++",
+        "StatIncrease2": "Speed",
+        "StatIncrease2Size": "+",
+        "StatDecrease1": "Strength",
+        "StatIncrease2": "--"
+    },
+    {
+        "Type": "smart",
+        "Name": "I want to be Smart.",
+        "StatIncrease1": "Intelligence",
+        "StatIncrease1Size": "++",
+        "StatIncrease2": "Speed",
+        "StatIncrease2Size": "+",
+        "StatDecrease1": "Strength",
+        "StatIncrease2": "--"
+    }
+]

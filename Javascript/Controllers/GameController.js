@@ -18,6 +18,11 @@ dbcapp.controller(
         $http.get('json/masters.json').success(function (data) {
             $scope.masterList = data;
         });
+        $http.get('json/characterList.json').success(function (data) {
+            $scope.characterTypeList = data;
+        }).error(function (error) {
+            console.log(error)
+        });
 
         //Initial Objects
         $scope.player = {
@@ -74,7 +79,7 @@ dbcapp.controller(
                 state: true,
             },
             startMenu: {
-                state: true,
+                state: false,
             },
             charSelect: {
                 state: false,
@@ -84,7 +89,7 @@ dbcapp.controller(
                 }
             },
             charCreate: {
-                state: false,
+                state: true,
                 toggle: function () {
                     this.state = !this.state;
                     $scope.gameMenu.startMenu.state = !this.state;
@@ -97,5 +102,18 @@ dbcapp.controller(
             $scope.gameMenu.startMenu.state = false;
             $scope.gameMenu.charCreate.state = false;
             $scope.gameMenu.charSelect.state = false;
+        }
+
+        $scope.selectRace = function (raceClass, name) {
+            $scope.selectedRace = {
+                cssClass: raceClass,
+                name: name
+            }
+
+            $scope.raceSelected = true;
+        }
+
+        $scope.raceSelectBack = function () {
+            $scope.raceSelected = !$scope.raceSelected;
         }
     });

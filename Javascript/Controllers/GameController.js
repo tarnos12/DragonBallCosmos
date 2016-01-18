@@ -28,8 +28,14 @@ dbcapp.controller(
         $scope.player = {
             health: { name: "Health", value: 10, description: 'Life Force, if it becomes 0, you die' },
             maxHealth: { name: "Max Health", value: 10 },
+            healthPerCent: function(){
+                return this.health.value / this.maxHealth.value * 100;
+            },
             energy: { name: "Energy", value: 10, description: 'Energy, required to use various techniques' },
             maxEnergy: { name: "Max Energy", value: 10 },
+            energyPercent: function () {
+                return this.energy.value / this.maxEnergy.value * 100;
+            },
             baseStats: {
                 force: { name: "Force", value: 1, description: 'Increase physical damage' },
                 perseverance: { name: "Perseverance", value: 1, description: 'Reduce damage taken from physical attacks' },
@@ -65,6 +71,19 @@ dbcapp.controller(
             master: "",
             inventorySlot: 30
         };
+        $scope.random = function () {
+            var randomHp = Math.floor(Math.random() * 10 + 1);
+            var randomEnergy = Math.floor(Math.random() * 10 + 1);
+            $scope.player.health.value = randomHp;
+            $scope.player.energy.value = randomEnergy;
+        };
+        //Can be used for dynamic
+        $scope.tabs = [
+            { title: 'Battle', content: 'Views/battle.html' },
+            { title: 'Training', content: 'Views/training.html', disabled: false },
+            { title: 'Mission', content: 'Views/mission.html', disabled: false },
+            { title: 'Map', content: 'Views/map.html', disabled: false }
+        ];
         //Initialize player inventory
         $scope.playerInventory = [];
         for (var i = 0; i < $scope.player.inventorySlot; i++) {

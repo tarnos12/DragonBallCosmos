@@ -5,17 +5,19 @@ dbcapp.controller(
     function (
         $scope,
         $interval,
+        itemData,
         $http
        ) {
 
+        console.log(itemData);
         //Loading Json Data
-        $http.get('../../json/stats.json').success(function (data) {
+        $http.get('../json/stats.json').success(function (data) {
             $scope.saveList = data;
         });
         $http.get('../json/races.json').success(function (data) {
             $scope.raceList = data;
         });
-        $http.get('../../json/masters.json').success(function (data) {
+        $http.get('../json/masters.json').success(function (data) {
             $scope.masterList = data;
         });
         $http.get('json/characterList.json').success(function (data) {
@@ -23,7 +25,6 @@ dbcapp.controller(
         }).error(function (error) {
             console.log(error)
         });
-
         //Initial Objects
         $scope.player = {
             health: { name: "Health", value: 10, description: 'Life Force, if it becomes 0, you die' },
@@ -45,7 +46,16 @@ dbcapp.controller(
                 kiAttacks: { name: "Ki Attacks", value: 1, description: 'Increase damage dealt with Ki attacks' },
             },
             name: "",
-            race: {},
+            race: {
+                Stats: {
+                    force: 0,
+                    perseverance: 0,
+                    concentration: 0,
+                    speed: 0,
+                    resolution: 0,
+                    kiAttacks: 0,
+                }
+            },
             totalStats: {
                 force: function () {
                     return $scope.player.baseStats.force.value + $scope.player.race.Stats.force;
@@ -117,12 +127,12 @@ dbcapp.controller(
             }
         };
         //Crete character submit button
-        $scope.submitCharacter = function(){
+        $scope.submitCharacter = function () {
             $scope.gameMenu.loadingScreen.state = false;
             $scope.gameMenu.startMenu.state = false;
             $scope.gameMenu.charCreate.state = false;
             $scope.gameMenu.charSelect.state = false;
-        }
+        };
 
         $scope.selectRace = function (raceClass, name) {
             $scope.selectedRace = {
@@ -131,9 +141,21 @@ dbcapp.controller(
             }
 
             $scope.raceSelected = true;
-        }
+        };
 
         $scope.raceSelectBack = function () {
             $scope.raceSelected = !$scope.raceSelected;
-        }
+        };
+
+        $scope.addItemToInventory = function () {
+            var item = {};
+            var count = 0;
+            for (var prop in $scope.itemList)
+            if (Math.random() < 1 / ++count) {
+                item = prop;
+            };
+            $scope.playerInventory.push(item);
+        };
+        $scope.addItemToInventory();
+
     });

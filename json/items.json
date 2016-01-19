@@ -1,0 +1,99 @@
+﻿{
+    "weapon": [
+        {
+            "name": "Sword",
+            "Force": 4,
+            "Concentration": 2
+        },
+        {
+            "name": "Pole",
+            "Force": 2,
+            "Concentration": 3
+        }
+
+    ],
+    "chest": [
+        {
+            "name": "Armor",
+            "Force": 4,
+            "Concentration": 2
+        },
+        {
+            "name": "Strong Armor",
+            "Force": 2,
+            "Concentration": 3
+        }
+    ],
+    "helmet": [
+        {
+            "name": "helm",
+            "Force": 4,
+            "Concentration": 2
+        },
+        {
+            "name": "Cap",
+            "Force": 2,
+            "Concentration": 3
+        }
+    ],
+    "offHand": [
+        {
+            "name": "Shield",
+            "Force": 4,
+            "Concentration": 2
+        },
+        {
+            "name": "Dagger",
+            "Force": 2,
+            "Concentration": 3
+        }
+    ],
+    "belt": [
+        {
+            "name": "Belt",
+            "Force": 4,
+            "Concentration": 2
+        },
+        {
+            "name": "Green Belt",
+            "Force": 2,
+            "Concentration": 3
+        }
+    ],
+    "boots": [
+        {
+            "name": "Boots",
+            "Force": 4,
+            "Concentration": 2
+        },
+        {
+            "name": "Green Boots",
+            "Force": 2,
+            "Concentration": 3
+        }
+    ],
+    "wrist": [
+        {
+            "name": "Wrists",
+            "Force": 4,
+            "Concentration": 2
+        },
+        {
+            "name": "Blue Wrists",
+            "Force": 2,
+            "Concentration": 3
+        }
+    ],
+    "special": [
+        {
+            "name": "Belt",
+            "Force": 4,
+            "Concentration": 2
+        },
+        {
+            "name": "Green Belt",
+            "Force": 2,
+            "Concentration": 3
+        }
+    ]
+}

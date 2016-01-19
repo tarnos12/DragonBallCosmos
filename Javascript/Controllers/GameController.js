@@ -6,19 +6,16 @@ dbcapp.controller(
         $scope,
         $interval,
         itemData,
+        raceData,
+        masterData,
         $http
        ) {
-
-        console.log(itemData);
+        $scope.itemList = itemData.items;
+        $scope.raceList = raceData;
+        $scope.masterList = masterData;
         //Loading Json Data
         $http.get('../json/stats.json').success(function (data) {
             $scope.saveList = data;
-        });
-        $http.get('../json/races.json').success(function (data) {
-            $scope.raceList = data;
-        });
-        $http.get('../json/masters.json').success(function (data) {
-            $scope.masterList = data;
         });
         $http.get('json/characterList.json').success(function (data) {
             $scope.characterTypeList = data;
@@ -80,7 +77,8 @@ dbcapp.controller(
             gender: "",
             master: "",
             charType: {},
-            inventorySlot: 30
+            inventorySlot: 30,
+            itemId:0,
         };
         $scope.random = function () {
             var randomHp = Math.floor(Math.random() * 10 + 1);
@@ -97,10 +95,17 @@ dbcapp.controller(
         ];
         //Initialize player inventory
         $scope.playerInventory = [];
-        for (var i = 0; i < $scope.player.inventorySlot; i++) {
-            var slot = new Object();
-            $scope.playerInventory.push(slot);
+        $scope.equippedItems = {
+            helmet: {},
+            weapon: {},
+            chest: {},
+            offHand: {},
+            belt: {},
+            wrist: {},
+            boots: {},
+            special: {}
         };
+        
 
         $scope.genderList = ['Male', 'Female'];
 
@@ -147,15 +152,60 @@ dbcapp.controller(
             $scope.raceSelected = !$scope.raceSelected;
         };
 
-        $scope.addItemToInventory = function () {
-            var item = {};
-            var count = 0;
-            for (var prop in $scope.itemList)
-            if (Math.random() < 1 / ++count) {
-                item = prop;
-            };
+        $scope.addItemInventory = function () {
+            var itemDataInv = itemData.items;
+            var id = $scope.player.itemId;
+            var item = addItem(itemDataInv, id);
+            $scope.player.itemId++;
             $scope.playerInventory.push(item);
-        };
-        $scope.addItemToInventory();
+            console.log(item.id)
+        }
+        $scope.unequip = function (type, id) {
+            var item = $scope.equippedItems[type];
+            item.isEquipped = false;
+            $scope.playerInventory.push(item);
+            $scope.equippedItems[type] = {};
+        }
+        $scope.equip = function (type, id) {
+            var inventoryObj = $scope.playerInventory;
+            var item = filterItemId(inventoryObj, id);
+            item.isEquipped = true;
+            var equippedItem = $scope.equippedItems[type];
+            if (equippedItem.isEquipped === true) {
+                $scope.unequip(equippedItem.itemType, equippedItem.id);
+            };
+            $scope.equippedItems[type] = item;
+            var index = $scope.playerInventory.indexOf(item, 0);
+            if (index > -1) {
+                $scope.playerInventory.splice(index, 1);
+            };
+            console.log($scope.equippedItems[type].isEquipped)
+        }
 
     });
+
+//Add item for testing purposes.
+function addItem(itemData, id) {
+    var item = {};
+    var count = 0;
+    var randomItem;
+    var type;
+    for (var prop in itemData) {
+        if (Math.random() < 1 / ++count) {
+            item = itemData[prop];
+            type = prop;
+        };
+    };
+    var randomItem = item[Math.floor(Math.random() * item.length)];
+    randomItem['id'] = id;
+    randomItem['itemType'] = type;
+    randomItem['isEquipped'] = false;
+    return randomItem;
+};
+
+function filterItemId(obj, id) {
+    var item = obj.filter(function (e) {
+        return e.id === id;
+    })[0];
+    return item;
+};

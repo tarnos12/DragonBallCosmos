@@ -18,15 +18,15 @@
                 </p>
     </div>
     <div class="col-xs-4 equippedHeight border">
-        
-        <div class="helmet">Helmet</div>
-        <div class="weapon">Weapon</div>
-        <div class="offHand">OffHand</div>
-        <div class="chest">Chest</div>
-        <div class="belt">Belt</div>
-        <div class="wrist">Wrist</div>
-        <div class="boots">Boots</div>
-        <div class="special">Special</div>
+        <div ng-repeat="(key, item) in equippedItems">
+            <div ng-class="key">
+                <button class="btn btn-default" ng-if="item.isEquipped" ng-click="unequip(item.itemType, item.id)">
+                    {{item.name}}
+                </button>
+
+            </div>
+
+        </div>
     </div>
     <div class="col-xs-4 border">
         Secondary stats

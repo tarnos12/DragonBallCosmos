@@ -31,7 +31,7 @@
             "Concentration": 2
         },
         {
-            "name": "Cap",
+            "name": "Ox-King Helm",
             "Force": 2,
             "Concentration": 3
         }
@@ -43,7 +43,7 @@
             "Concentration": 2
         },
         {
-            "name": "Dagger",
+            "name": "Strong Shield",
             "Force": 2,
             "Concentration": 3
         }
@@ -86,12 +86,12 @@
     ],
     "special": [
         {
-            "name": "Belt",
+            "name": "Dragon Radar",
             "Force": 4,
             "Concentration": 2
         },
         {
-            "name": "Green Belt",
+            "name": "Ninbus",
             "Force": 2,
             "Concentration": 3
         }

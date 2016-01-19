@@ -3,10 +3,11 @@
 dbcapp.factory(
     'itemData',
     function ($http) {
-    var itemList;
-    $http.get('json/items.json').success(function (data) {
-        itemList = data;
-        console.log(itemList);
-    })
-    return itemList;
-})
+        var itemList = {
+            items: {}
+        };
+        $http.get('json/items.json').success(function (data) {
+            itemList.items = data;
+        });
+        return itemList;
+    });

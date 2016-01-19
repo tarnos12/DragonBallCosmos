@@ -169,11 +169,11 @@ dbcapp.controller(
         $scope.equip = function (type, id) {
             var inventoryObj = $scope.playerInventory;
             var item = filterItemId(inventoryObj, id);
-            item.isEquipped = true;
             var equippedItem = $scope.equippedItems[type];
             if (equippedItem.isEquipped === true) {
                 $scope.unequip(equippedItem.itemType, equippedItem.id);
             };
+            item.isEquipped = true;
             $scope.equippedItems[type] = item;
             var index = $scope.playerInventory.indexOf(item, 0);
             if (index > -1) {

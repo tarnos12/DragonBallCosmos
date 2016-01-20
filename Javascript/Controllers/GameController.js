@@ -24,53 +24,61 @@ dbcapp.controller(
         });
         //Initial Objects
         $scope.player = {
-            health: { name: "Health", value: 10, description: 'Life Force, if it becomes 0, you die' },
-            maxHealth: { name: "Max Health", value: 10 },
+            health: { name: "Life Points", value: 10, description: 'Life Force, if it becomes 0, you die' },
+            maxHealth: { name: "Max Life Points", value: 10 },
             healthPerCent: function(){
                 return this.health.value / this.maxHealth.value * 100;
             },
-            energy: { name: "Energy", value: 10, description: 'Energy, required to use various techniques' },
-            maxEnergy: { name: "Max Energy", value: 10 },
+            energy: { name: "Ki Points", value: 10, description: 'Energy, required to use various techniques' },
+            maxEnergy: { name: "Max Ki Points", value: 10 },
             energyPercent: function () {
                 return this.energy.value / this.maxEnergy.value * 100;
             },
             baseStats: {
-                force: { name: "Force", value: 1, description: 'Increase physical damage' },
-                perseverance: { name: "Perseverance", value: 1, description: 'Reduce damage taken from physical attacks' },
-                concentration: { name: "Concentration", value: 1, description: 'Increase critical strike chance' },
+                strength: { name: "Strength", value: 1, description: 'Increase physical damage' },
                 speed: { name: "Speed", value: 1, description: 'Evasion, turn order' },
-                resolution: { name: "Resolution", value: 1, description: 'Reduce damage taken from Ki attacks' },
-                kiAttacks: { name: "Ki Attacks", value: 1, description: 'Increase damage dealt with Ki attacks' },
+                persistence: { name: "Persistence", value: 1, description: 'Decrease damage taken' },
+                intelligence: { name: "Intelligence", value: 1, description: 'Training Speed' },
             },
             name: "",
             race: {
                 Stats: {
-                    force: 0,
-                    perseverance: 0,
-                    concentration: 0,
+                    strength: 0,
                     speed: 0,
-                    resolution: 0,
-                    kiAttacks: 0,
+                    persistence: 0,
+                    intelligence:0
                 }
             },
-            totalStats: {
-                force: function () {
-                    return $scope.player.baseStats.force.value + $scope.player.race.Stats.force;
-                },
-                perseverance: function () {
-                    return $scope.player.baseStats.perseverance.value + $scope.player.race.Stats.perseverance;
-                },
-                concentration: function () {
-                    return $scope.player.baseStats.concentration.value + $scope.player.race.Stats.concentration;
+            equipStats:{
+                strength: function () {
+                    var total = equipStatTotal('strength', $scope.equippedItems);
+                    return total;
                 },
                 speed: function () {
-                    return $scope.player.baseStats.speed.value + $scope.player.race.Stats.speed;
+                    var total = equipStatTotal('speed', $scope.equippedItems);
+                    return total;
                 },
-                resolution: function () {
-                    return $scope.player.baseStats.resolution.value + $scope.player.race.Stats.resolution;
+                persistence: function () {
+                    var total = equipStatTotal('persistence', $scope.equippedItems);
+                    return total;
                 },
-                kiAttacks: function () {
-                    return $scope.player.baseStats.kiAttacks.value + $scope.player.race.Stats.kiAttacks;
+                intelligence: function () {
+                    var total = equipStatTotal('intelligence', $scope.equippedItems);
+                    return total;
+                },
+            },
+            totalStats: {
+                strength: function () {
+                    return $scope.player.baseStats.strength.value + $scope.player.race.Stats.strength + $scope.player.equipStats.strength();
+                },
+                speed: function () {
+                    return $scope.player.baseStats.speed.value + $scope.player.race.Stats.speed + $scope.player.equipStats.speed();
+                },
+                persistence: function () {
+                    return $scope.player.baseStats.persistence.value + $scope.player.race.Stats.persistence + $scope.player.equipStats.persistence();
+                },
+                intelligence: function () {
+                    return $scope.player.baseStats.intelligence.value + $scope.player.race.Stats.intelligence + $scope.player.equipStats.intelligence();
                 },
 
             },
@@ -100,7 +108,6 @@ dbcapp.controller(
             weapon: {},
             chest: {},
             offHand: {},
-            belt: {},
             wrist: {},
             boots: {},
             special: {}
@@ -153,12 +160,12 @@ dbcapp.controller(
         };
 
         $scope.addItemInventory = function () {
-            var itemDataInv = itemData.items;
+            var itemDataInv = {};
+            itemDataInv = itemData.items;
             var id = $scope.player.itemId;
             var item = addItem(itemDataInv, id);
             $scope.player.itemId++;
             $scope.playerInventory.push(item);
-            console.log(item.id)
         }
         $scope.unequip = function (type, id) {
             var item = $scope.equippedItems[type];
@@ -179,7 +186,6 @@ dbcapp.controller(
             if (index > -1) {
                 $scope.playerInventory.splice(index, 1);
             };
-            console.log($scope.equippedItems[type].isEquipped)
         }
 
     });
@@ -190,6 +196,7 @@ function addItem(itemData, id) {
     var count = 0;
     var randomItem;
     var type;
+    var itemReturn = {};
     for (var prop in itemData) {
         if (Math.random() < 1 / ++count) {
             item = itemData[prop];
@@ -197,10 +204,16 @@ function addItem(itemData, id) {
         };
     };
     var randomItem = item[Math.floor(Math.random() * item.length)];
-    randomItem['id'] = id;
-    randomItem['itemType'] = type;
-    randomItem['isEquipped'] = false;
-    return randomItem;
+    for (var key in randomItem) {
+        if (randomItem.hasOwnProperty(key)) {
+            itemReturn[key] = {};
+            itemReturn[key] = randomItem[key];
+        };
+    };
+    itemReturn['id'] = id;
+    itemReturn['itemType'] = type;
+    itemReturn['isEquipped'] = false;
+    return itemReturn;
 };
 
 function filterItemId(obj, id) {
@@ -208,4 +221,21 @@ function filterItemId(obj, id) {
         return e.id === id;
     })[0];
     return item;
+};
+
+//Callback function, calculate equipped items stat for player object inside a controller.
+function equipStatTotal(statString, equippedItems) {
+    var total = 0;
+    for (var key in equippedItems) {
+        if (equippedItems.hasOwnProperty(key)) {
+            var stat = equippedItems[key][statString];
+            if (stat !== undefined) {
+                total += stat;
+            }
+            else {
+                total += 0;
+            };
+        };
+    };
+    return total;
 };

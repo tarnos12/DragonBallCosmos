@@ -20,9 +20,8 @@
     <div class="col-xs-4 equippedHeight border">
         <div ng-repeat="(key, item) in equippedItems">
             <div ng-class="key">
-                <button class="btn btn-default" ng-if="item.isEquipped" ng-click="unequip(item.itemType, item.id)">
-                    {{item.name}}
-                </button>
+                    <img ng-src=Images/items/{{item.image}} ng-if="item.isEquipped" ng-click="unequip(item.itemType, item.id)" />
+              
 
             </div>
 

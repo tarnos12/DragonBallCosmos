@@ -92,7 +92,7 @@
                     <div class="form-Group">
                         <h4>Choose your Master:</h4>
                         <div class="btn-group">
-                            <label class="btn btn-primary" ng-model="player.master" uib-btn-radio="master" ng-repeat="(i, master) in masterList track by $index">
+                            <label class="btn btn-primary" ng-model="player.master" uib-btn-radio="master" ng-repeat="(i, master) in masterList.masters track by $index">
                                 {{master.Name}}
                             </label>
                         </div>
@@ -100,13 +100,23 @@
                     <div class="form-group">
                         <h4>Character type:</h4>
                         <div class="btn-group">
-                            <label class="btn btn-primary" ng-model="player.charType" uib-btn-radio="charType.Type" ng-repeat="(i, charType) in characterTypeList track by $index">
+                            <label class="btn btn-primary" ng-model="player.charType" uib-btn-radio="charType" ng-repeat="(i, charType) in characterTypeList track by $index">
                                 {{charType.Name}}
                             </label>
                         </div>
-                        {{charType.Type.StatIncrease1}} {{charType.Type.StatIncrease1Size}}
-                        {{charType.Type.StatIncrease2}} {{charType.Type.StatIncrease2Size}}
-                        {{charType.Type.StatDecrease1}} {{charType.Type.StatDecrease1Size}}
+                        <br />
+                        <!--TODO: Add Stat icons here.-->
+                        <span class="text-success">
+                            {{player.charType.StatIncrease1}} {{player.charType.StatIncrease1Size}}
+                        </span>
+                        <br />
+                        <span class="text-success">
+                            {{player.charType.StatIncrease2}} {{player.charType.StatIncrease2Size}}
+                        </span>
+                        <span class="text-danger">
+                            <br />
+                            {{player.charType.StatDecrease1}} {{player.charType.StatDecrease1Size}}
+                        </span>
                     </div>
                 </div>
             </div>
@@ -131,6 +141,6 @@
         </div>-->
 
     </div>
-<button class="btn btn-success" ng-click="submitCharacter()">Submit</button>
-<button class="btn btn-warning pull-right" ng-click="gameMenu.charCreate.toggle()">Back</button>
+    <button class="btn btn-success" ng-click="submitCharacter()">Submit</button>
+    <button class="btn btn-warning pull-right" ng-click="gameMenu.charCreate.toggle()">Back</button>
 </div>

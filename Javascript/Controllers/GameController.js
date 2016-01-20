@@ -17,7 +17,7 @@ dbcapp.controller(
         $http.get('../json/stats.json').success(function (data) {
             $scope.saveList = data;
         });
-        $http.get('json/characterList.json').success(function (data) {
+        $http.get('json/characterTypeList.json').success(function (data) {
             $scope.characterTypeList = data;
         }).error(function (error) {
             console.log(error)

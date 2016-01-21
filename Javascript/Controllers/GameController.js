@@ -7,21 +7,18 @@ dbcapp.controller(
         $interval,
         itemData,
         raceData,
-        masterData,
+        charCreationData,
         $http
        ) {
         $scope.itemList = itemData.items;
         $scope.raceList = raceData;
-        $scope.masterList = masterData;
+        $scope.charCreation = charCreationData;
+
         //Loading Json Data
         $http.get('../json/stats.json').success(function (data) {
             $scope.saveList = data;
         });
-        $http.get('json/characterTypeList.json').success(function (data) {
-            $scope.characterTypeList = data;
-        }).error(function (error) {
-            console.log(error)
-        });
+       
         //Initial Objects
         $scope.player = {
             health: { name: "Life Points", value: 10, description: 'Life Force, if it becomes 0, you die' },
@@ -113,9 +110,6 @@ dbcapp.controller(
             special: {}
         };
         
-
-        $scope.genderList = ['Male', 'Female'];
-
         $scope.gameMenu = {
             loadingScreen: {
                 state: true,

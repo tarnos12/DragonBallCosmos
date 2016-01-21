@@ -7,7 +7,6 @@
 }
 
 .equippedHeight {
-    background-color: orange;
     position: relative;
     height: 400px;
 }
@@ -100,4 +99,34 @@ a.itemTooltip {
 a.itemTooltip span {
     border-radius: 4px;
     box-shadow: 5px 5px 8px #CCC;
+}
+
+.inventoryShadow {
+  -webkit-box-shadow: 0px 7px 4px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 7px 4px 0px rgba(0,0,0,0.75);
+box-shadow: 0px 7px 4px 0px rgba(0,0,0,0.75);
+}
+
+
+
+    .nav-tabs > li > a {
+       -webkit-box-shadow: inset 0px -24px 30px -16px rgba(0,0,0,0.72);
+-moz-box-shadow: inset 0px -24px 30px -16px rgba(0,0,0,0.72);
+box-shadow: inset 0px -24px 30px -16px rgba(0,0,0,0.72);
+    margin-right: 15px;
+    }
+.nav-tabs > li.active > a {
+    -webkit-box-shadow: inset 0px 24px 30px -16px rgba(0,0,0,0.75);
+-moz-box-shadow: inset 0px 24px 30px -16px rgba(0,0,0,0.75);
+box-shadow: inset 0px 24px 30px -16px rgba(0,0,0,0.75);
+}
+.nav-tabs >li:first-child{
+    margin-left:-15px;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+    border:0;
+    border-bottom:3px solid transparent;
+}
+.nav-tabs{
+    border:0;
 }

@@ -1,51 +1,105 @@
-﻿.stats{
-    background-color:orange;
+﻿.stats {
+    background-color: orange;
 }
-.backgroundHeight{
-    background-color:darkorange;
+
+.backgroundHeight {
+    background-color: darkorange;
 }
-.equippedHeight{
-    background-color:orange;
-    position:relative;
-    height:400px;
+
+.equippedHeight {
+    background-color: orange;
+    position: relative;
+    height: 400px;
 }
-.equippedHeight > div > div{
-    width:50px;
-    height:50px;
-    border:1px solid;
+
+    .equippedHeight > div > div {
+        width: 50px;
+        height: 50px;
+        border: 1px solid;
+    }
+
+.helmet {
+    position: absolute;
+    left: 45%;
+    top: 5%;
 }
-.helmet{
-    position:absolute;
-    left:45%;
-    top:5%;
+
+.weapon {
+    position: absolute;
+    left: 20%;
+    top: 20%;
 }
-.weapon{
-    position:absolute;
-    left:20%;
-    top:20%;
+
+.chest {
+    position: absolute;
+    left: 45%;
+    top: 20%;
 }
-.chest{
-    position:absolute;
-    left:45%;
-    top:20%;
+
+.offHand {
+    position: absolute;
+    left: 70%;
+    top: 20%;
 }
-.offHand{
-    position:absolute;
-    left:70%;
-    top:20%;
+
+.wrist {
+    position: absolute;
+    left: 20%;
+    top: 40%;
 }
-.wrist{
-    position:absolute;
-    left:20%;
-    top:40%;
+
+.boots {
+    position: absolute;
+    left: 45%;
+    top: 40%;
 }
-.boots{
-    position:absolute;
-    left:45%;
-    top:40%;
+
+.special {
+    position: absolute;
+    left: 70%;
+    top: 40%;
 }
-.special{
-    position:absolute;
-    left:70%;
-    top:40%;
+
+a.itemTooltip {
+    outline: none;
+}
+
+    a.itemTooltip strong {
+        line-height: 30px;
+    }
+
+    a.itemTooltip:hover {
+        text-decoration: none;
+    }
+
+    a.itemTooltip span {
+        z-index: 10;
+        display: none;
+        padding: 14px 20px;
+        margin-top: -80px;
+        margin-left: 78px;
+        width: 300px;
+        line-height: 16px;
+    }
+
+    a.itemTooltip:hover span {
+        display: inline;
+        position: absolute;
+        color: #111;
+        border: 1px solid #DCA;
+        background: #fffAF0;
+    }
+
+.callout {
+    z-index: 20;
+    position: absolute;
+    top: 30px;
+    border: 0;
+    left: -12px;
+}
+
+/*CSS3 extras*/
+a.itemTooltip span {
+    border-radius: 4px;
+    box-shadow: 5px 5px 8px #CCC;
 }

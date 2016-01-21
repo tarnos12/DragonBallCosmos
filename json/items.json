@@ -3,18 +3,24 @@
         {
             "name": "Training Sword",
             "image": "weapon/TrainingSword.png",
-            "strength": 4,
-            "speed": 2,
-            "persistence": 1,
-            "intelligence": 1
+            "stats": 
+                {
+                    "strength": 4,
+                    "speed": 2,
+                    "persistence": 1,
+                    "intelligence": 1
+                }
         },
         {
             "name": "Pole",
             "image": "weapon/Pole.png",
-            "strength": 2,
-            "speed": 3,
-            "persistence": 1,
-            "intelligence": 1
+            "stats": 
+                {
+                    "strength": 4,
+                    "speed": 2,
+                    "persistence": 1,
+                    "intelligence": 1
+                }
         }
 
     ],
@@ -22,108 +28,144 @@
         {
             "name": "Armor",
             "image": "chest/BasicArmor.png",
-            "strength": 4,
-            "speed": 2,
-            "persistence": 1,
-            "intelligence": 1
+            "stats": 
+                {
+                    "strength": 4,
+                    "speed": 2,
+                    "persistence": 1,
+                    "intelligence": 1
+                }
         },
         {
             "name": "Strong Armor",
             "image": "chest/StrongArmor.png",
-            "strength": 2,
-            "speed": 3,
-            "persistence": 1,
-            "intelligence": 1
+            "stats": 
+                {
+                    "strength": 4,
+                    "speed": 2,
+                    "persistence": 1,
+                    "intelligence": 1
+                }
         }
     ],
     "helmet": [
         {
             "name": "Horn Helmet",
             "image": "helmet/HornHelmet.png",
-            "strength": 4,
-            "speed": 2,
-            "persistence": 1,
-            "intelligence": 1
+            "stats": 
+                {
+                    "strength": 4,
+                    "speed": 2,
+                    "persistence": 1,
+                    "intelligence": 1
+                }
         },
         {
             "name": "Ox-King Helm",
             "image": "helmet/Ox-KingHelmet.png",
-            "strength": 2,
-            "speed": 3,
-            "persistence": 1,
-            "intelligence": 1
+            "stats": 
+                {
+                    "strength": 4,
+                    "speed": 2,
+                    "persistence": 1,
+                    "intelligence": 1
+                }
         }
     ],
     "offHand": [
         {
             "name": "Small Shield",
             "image": "offHand/SmallShield.png",
-            "strength": 4,
-            "speed": 2,
-            "persistence": 1,
-            "intelligence": 1
+            "stats": 
+                {
+                    "strength": 4,
+                    "speed": 2,
+                    "persistence": 1,
+                    "intelligence": 1
+                }
         },
         {
             "name": "Strong Shield",
             "image": "offHand/StrongShield.png",
-            "strength": 2,
-            "speed": 3,
-            "persistence": 1,
-            "intelligence": 1
+            "stats": 
+                {
+                    "strength": 4,
+                    "speed": 2,
+                    "persistence": 1,
+                    "intelligence": 1
+                }
         }
     ],
     "boots": [
         {
             "name": "Boots",
             "image": "boots/Boots.png",
-            "strength": 4,
-            "speed": 2,
-            "persistence": 1,
-            "intelligence": 1
+            "stats": 
+                {
+                    "strength": 4,
+                    "speed": 2,
+                    "persistence": 1,
+                    "intelligence": 1
+                }
         },
         {
             "name": "Green Boots",
             "image": "boots/SmallBoots.png",
-            "strength": 2,
-            "speed": 3,
-            "persistence": 1,
-            "intelligence": 1
+            "stats": 
+                {
+                    "strength": 4,
+                    "speed": 2,
+                    "persistence": 1,
+                    "intelligence": 1
+                }
         }
     ],
     "wrist": [
         {
             "name": "Wrists",
             "image": "wrist/Wrist.png",
-            "strength": 4,
-            "speed": 2,
-            "persistence": 1,
-            "intelligence": 1
+            "stats": 
+                {
+                    "strength": 4,
+                    "speed": 2,
+                    "persistence": 1,
+                    "intelligence": 1
+                }
         },
         {
             "name": "Blue Wrists",
             "image": "wrist/Wrist.png",
-            "strength": 2,
-            "speed": 3,
-            "persistence": 1,
-            "intelligence": 1
+            "stats": 
+                {
+                    "strength": 4,
+                    "speed": 2,
+                    "persistence": 1,
+                    "intelligence": 1
+                }
         }
     ],
     "special": [
         {
             "name": "Dragon Radar",
             "image": "special/DragonRadar.png",
-            "strength": 4,
-            "speed": 2,
-            "persistence": 1,
-            "intelligence": 1
+            "stats": 
+                {
+                    "strength": 4,
+                    "speed": 2,
+                    "persistence": 1,
+                    "intelligence": 1
+                }
         },
         {
             "name": "Ninbus",
             "image": "special/Ninbus.png",
-            "strength": 2,
-            "speed": 3,
-            "persistence": 1,
-            "intelligence": 1
+            "stats": 
+                {
+                    "strength": 4,
+                    "speed": 2,
+                    "persistence": 1,
+                    "intelligence": 1
+                }
         }
     ]
 }

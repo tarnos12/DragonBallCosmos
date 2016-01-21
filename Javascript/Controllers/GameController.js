@@ -144,17 +144,17 @@ function filterItemId(obj, id) {
     })[0];
     return item;
 };
-
 //Callback function, calculate equipped items stat for player object inside a controller.
 function equipStatTotal(statString, equippedItems) {
     var total = 0;
     for (var key in equippedItems) {
         if (equippedItems.hasOwnProperty(key)) {
-            var stat = equippedItems[key][statString];
+            var stat = equippedItems[key].stats[statString];
             if (stat !== undefined) {
                 total += stat;
             }
             else {
+                equippedItems[key].stats[statString] = 0;
                 total += 0;
             };
         };

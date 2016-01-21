@@ -7,13 +7,27 @@ dbcapp.factory(
         var player = {
             inventory: [],
             equippedItems: {
-                helmet: {},
-                weapon: {},
-                chest: {},
-                offHand: {},
-                wrist: {},
-                boots: {},
-                special: {}
+                helmet: {
+                    stats: {}
+                },
+                weapon: {
+                    stats: {}
+                },
+                chest: {
+                    stats: {}
+                },
+                offHand: {
+                    stats: {}
+                },
+                wrist: {
+                    stats: {}
+                },
+                boots: {
+                    stats: {}
+                },
+                special: {
+                    stats: {}
+                }
             },
             health: { name: "Life Points", value: 10, description: 'Life Force, if it becomes 0, you die' },
             maxHealth: { name: "Max Life Points", value: 10 },

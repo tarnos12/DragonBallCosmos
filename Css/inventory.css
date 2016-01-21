@@ -13,8 +13,6 @@
 }
 
     .equippedHeight > div > div {
-        width: 50px;
-        height: 50px;
         border: 1px solid;
     }
 
@@ -27,37 +25,37 @@
 .weapon {
     position: absolute;
     left: 20%;
-    top: 20%;
+    top: 25%;
 }
 
 .chest {
     position: absolute;
     left: 45%;
-    top: 20%;
+    top: 25%;
 }
 
 .offHand {
     position: absolute;
     left: 70%;
-    top: 20%;
+    top: 25%;
 }
 
 .wrist {
     position: absolute;
     left: 20%;
-    top: 40%;
+    top: 45%;
 }
 
 .boots {
     position: absolute;
     left: 45%;
-    top: 40%;
+    top: 45%;
 }
 
 .special {
     position: absolute;
     left: 70%;
-    top: 40%;
+    top: 45%;
 }
 
 a.itemTooltip {

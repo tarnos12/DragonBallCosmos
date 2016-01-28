@@ -1,0 +1,45 @@
+﻿<img src="Images/map/main.jpg" width="900" height="679" alt="Main map" usemap="#main" ng-show="currentMap.main">
+<img src="Images/map/sub.png" width="600" height="600" alt="Sub map" usemap="#varik" ng-show="currentMap.varik">
+<img src="Images/map/sub.png" width="600" height="600" alt="Sub map" usemap="#forest" ng-show="currentMap.forest">
+<img src="Images/map/sub.png" width="600" height="600" alt="Sub map" usemap="#mountain" ng-show="currentMap.mountain">
+<!-- currentMap is main object to store all maps info, hidden/shown. currentMap.[mapName] = true/false-->
+<map name='main'>
+    <area alt="" test="xdd" title="Goku House" shape="rect" coords="649,402,722,441" ng-click="consoleInfo($event)"/>
+    <area alt="" title="Satan City" shape="rect" coords="661,298,734,337" ng-click="consoleInfo($event)" />
+    <area alt="" title="Baseru City" shape="rect" coords="306,294,379,333" ng-click="consoleInfo($event)" />
+    <area alt="" title="West Capitol" shape="rect" coords="262,258,335,297" ng-click="consoleInfo($event)" />
+</map>
+
+<map name='varik'>
+    <area shape='circle' coords='65,483,15' title='1' />
+    <area shape='circle' coords='161,419,15' title='2' />
+    <area shape='circle' coords='246,337,15' title='3' />
+    <area shape='circle' coords='291,250,16' title='4' />
+    <area shape='circle' coords='321,150,15' title='5' />
+    <area shape='circle' coords='410,96,15' title='6' />
+    <area shape='circle' coords='466,195,15' title='7' />
+    <area shape='circle' coords='493,308,33' title='8' />
+    <area shape='rect' coords='469,7,590,44' title='back' ng-click="currentMap.main = true; currentMap.varik = false;" />
+</map>
+<map name='forest'>
+    <area shape='circle' coords='65,483,15' title='1' />
+    <area shape='circle' coords='161,419,15' title='2' />
+    <area shape='circle' coords='246,337,15' title='3' />
+    <area shape='circle' coords='291,250,16' title='4' />
+    <area shape='circle' coords='321,150,15' title='5' />
+    <area shape='circle' coords='410,96,15' title='6' />
+    <area shape='circle' coords='466,195,15' title='7' />
+    <area shape='circle' coords='493,308,33' title='8' />
+    <area shape='rect' coords='469,7,590,44' title='back' ng-click="currentMap.main = true; currentMap.forest = false;" />
+</map>
+<map name='mountain'>
+    <area shape='circle' coords='65,483,15' title='1' />
+    <area shape='circle' coords='161,419,15' title='2' />
+    <area shape='circle' coords='246,337,15' title='3' />
+    <area shape='circle' coords='291,250,16' title='4' />
+    <area shape='circle' coords='321,150,15' title='5' />
+    <area shape='circle' coords='410,96,15' title='6' />
+    <area shape='circle' coords='466,195,15' title='7' />
+    <area shape='circle' coords='493,308,33' title='8' />
+    <area shape='rect' coords='469,7,590,44' title='back' ng-click="currentMap.main = true; currentMap.mountain = false;" />
+</map>

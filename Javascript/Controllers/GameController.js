@@ -9,7 +9,8 @@ dbcapp.controller(
         itemData,
         raceData,
         charCreationData,
-        $http
+        $http,
+        $attrs
        ) {
         $scope.itemList = itemData.items;
         $scope.raceList = raceData;
@@ -60,6 +61,13 @@ dbcapp.controller(
                 }
             }
         };
+
+        $scope.currentMap = {
+            main: true,
+            varik: false,
+            forest: false,
+            mountain: false
+        }
         //Crete character submit button
         $scope.submitCharacter = function () {
             $scope.gameMenu.loadingScreen.state = false;
@@ -109,6 +117,11 @@ dbcapp.controller(
                 $scope.player.inventory.splice(index, 1);
             };
         }
+
+        //I am using this with html area map when clicking on an element.
+        $scope.consoleInfo = function (item) {
+            console.log(item.target.title);
+        };
 
     });
 

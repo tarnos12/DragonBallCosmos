@@ -1,54 +1,54 @@
 ﻿<div class="row stats">
     <div class="col-xs-12 inventoryShadow">
         <div class="row">
-            
-    <div class="col-xs-10 col-xs-offset-1">
 
-        <div class="row">
-            <div class="col-xs-12">
-                <p class="text-center">Character Level</p>
-            </div>
-        </div>
+            <div class="col-xs-10 col-xs-offset-1">
 
-        <div class="row">
-            <div class="col-xs-3">
-                <uib-progressbar max="max" value="player.healthPerCent()"><span style="color:white; white-space:nowrap;">{{player.health.value}} / {{player.maxHealth.value}}</span></uib-progressbar>
-                <uib-progressbar max="max" value="player.energyPercent()"><span style="color:white; white-space:nowrap;">{{player.energy.value}} / {{player.maxEnergy.value}}</span></uib-progressbar>
-                <button class="btn btn-default" ng-click="random()">Random energy/hp</button>
-                <p ng-repeat="(key, value) in player.totalStats">
-                    <span class="glyphicon glyphicon glyphicon-question-sign" aria-hidden="true" uib-popover="{{player.baseStats[key].description}}" popover-trigger="mouseenter"></span>
-                    <img ng-src="Images/stats/{{key}}.png" uib-popover="{{player.baseStats[key].name}}" popover-trigger="mouseenter" /><span> :{{value()}}</span>
-                </p>
-            </div>
-            <div class="col-xs-4 col-xs-offset-1 equippedHeight border">
-                <div ng-repeat="(key, item) in player.equippedItems">
-                    <div ng-class="key">
-                        <!-- Item tooltip -->
-                        <a href="#" class="itemTooltip">
-                            <img ng-src="Images/items/{{item.image}}" ng-if="item.isEquipped" ng-click="unequip(item.itemType, item.id)" />
-                            <span>
-                                <img class="callout" src="/Images/callout.gif" />
-                                <strong>{{item.name}}</strong><br />
-                                <p ng-repeat="(i, value) in item.stats track by $index">
-                                    {{i}}: + {{value}}
-                                </p>
-                            </span>
-                        </a>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p class="text-center">Character Level</p>
                     </div>
+                </div>
 
+                <div class="row">
+                    <div class="col-xs-3">
+                        <uib-progressbar max="max" value="player.healthPerCent()"><span style="color:white; white-space:nowrap;">{{player.health.value}} / {{player.maxHealth.value}}</span></uib-progressbar>
+                        <uib-progressbar max="max" value="player.energyPercent()"><span style="color:white; white-space:nowrap;">{{player.energy.value}} / {{player.maxEnergy.value}}</span></uib-progressbar>
+                        <button class="btn btn-default" ng-click="random()">Random energy/hp</button>
+                        <p ng-repeat="(key, value) in player.totalStats">
+                            <span class="glyphicon glyphicon glyphicon-question-sign" aria-hidden="true" uib-popover="{{player.baseStats[key].description}}" popover-trigger="mouseenter"></span>
+                            <img ng-src="Images/stats/{{key}}.png" uib-popover="{{player.baseStats[key].name}}" popover-trigger="mouseenter" /><span> :{{value()}}</span>
+                        </p>
+                    </div>
+                    <div class="col-xs-4 col-xs-offset-1 equippedHeight border">
+                        <div ng-repeat="(key, item) in player.equippedItems">
+                            <div ng-class="key">
+                                <!-- Item tooltip -->
+                                <a href="#" class="itemTooltip">
+                                    <img ng-src="Images/items/{{item.image}}" ng-if="item.isEquipped" ng-click="unequip(item.itemType, item.id)" />
+                                    <span>
+                                        <img class="callout" src="/Images/callout.gif" />
+                                        <strong>{{item.name}}</strong><br />
+                                        <p ng-repeat="(i, value) in item.stats track by $index">
+                                            {{i}}: + {{value}}
+                                        </p>
+                                    </span>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-xs-3 col-xs-offset-1">
+                        Secondary stats
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 border">
+                        Gold/dragon balls/etc.
+                    </div>
                 </div>
             </div>
-            <div class="col-xs-3 col-xs-offset-1">
-                Secondary stats
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-xs-12 border">
-                Gold/dragon balls/etc.
-            </div>
-        </div>
-    </div>
         </div>
     </div>
 </div>

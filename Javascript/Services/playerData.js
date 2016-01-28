@@ -93,7 +93,5 @@ dbcapp.factory(
             inventorySlot: 30,
             itemId: 0,
         };
-
-
         return player;
     });

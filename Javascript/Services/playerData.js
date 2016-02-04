@@ -5,6 +5,13 @@ dbcapp.factory(
     function ($http) {
         
         var player = {
+            isDead: false,
+            level: 1,
+            experience: 0,
+            maxExperience: 100,
+            inventorySlots: 30,
+            itemId: 0,
+            skills:[],
             inventory: [],
             equippedItems: {
                 helmet: {
@@ -29,8 +36,8 @@ dbcapp.factory(
                     stats: {}
                 }
             },
-            health: { name: "Life Points", value: 10, description: 'Life Force, if it becomes 0, you die' },
-            maxHealth: { name: "Max Life Points", value: 10 },
+            health: { name: "Life Points", value: 1000, description: 'Life Force, if it becomes 0, you die' },
+            maxHealth: { name: "Max Life Points", value: 1000 },
             healthPerCent: function () {
                 return this.health.value / this.maxHealth.value * 100;
             },
@@ -90,8 +97,6 @@ dbcapp.factory(
             gender: "",
             master: "",
             charType: {},
-            inventorySlot: 30,
-            itemId: 0,
         };
         return player;
     });

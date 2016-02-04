@@ -1,0 +1,13 @@
+﻿<div class="row LightOrangeBackground">
+    <div class="col-xs-12" ng-repeat="(key, type) in training.stat track by $index">
+        <h4>{{key}}</h4>
+        <p>Level: {{type.level}} - [ {{type.minExp}}/{{type.maxExp}} ]</p>
+        <div ng-repeat="(map, x) in type.map track by $index">
+            <h3>{{x.name}}</h3>
+            <p>Level Req:{{x.levelReq}}</p>
+            <p ng-repeat="(stat, value) in x.statGain track by $index">
+                Stat: {{stat}} per tick: {{value($scope)}}
+            </p>
+        </div>
+    </div>
+</div>

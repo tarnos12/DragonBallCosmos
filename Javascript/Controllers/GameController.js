@@ -9,18 +9,30 @@ dbcapp.controller(
         itemData,
         raceData,
         charCreationData,
+        trainingData,
+        enemyData,
+        skillData,
         $http,
         $attrs
        ) {
-        $scope.itemList = itemData.items;
-        $scope.raceList = raceData;
-        $scope.charCreation = charCreationData;
-
         //Loading Json Data
         $http.get('../json/stats.json').success(function (data) {
             $scope.saveList = data;
         });
         $scope.player = playerData;
+        $scope.itemList = itemData.items;
+        $scope.raceList = raceData;
+        $scope.charCreation = charCreationData;
+        $scope.training = trainingData;
+        $scope.enemies = enemyData;
+        $scope.skills = skillData;
+        $scope.player.skills.offensive = $scope.skills.offensive;
+        $scope.player.skills.defensive = $scope.skills.defensive;
+        $scope.currentEnemy = {};
+        $scope.currentArea = "";
+        $scope.previousMap = "";
+        $scope.battleStart = false;//Used to hide map and open battle screen
+
         //Initial Objects
        
         $scope.random = function () {
@@ -41,10 +53,13 @@ dbcapp.controller(
         
         $scope.gameMenu = {
             loadingScreen: {
-                state: true,
+                state: false,
             },
             startMenu: {
-                state: false,
+                state: true,
+            },
+            mainScreen:{
+                stat:false,
             },
             charSelect: {
                 state: false,
@@ -54,7 +69,7 @@ dbcapp.controller(
                 }
             },
             charCreate: {
-                state: true,
+                state: false,
                 toggle: function () {
                     this.state = !this.state;
                     $scope.gameMenu.startMenu.state = !this.state;
@@ -64,9 +79,10 @@ dbcapp.controller(
 
         $scope.currentMap = {
             main: true,
-            varik: false,
-            forest: false,
-            mountain: false
+            gokuHouse: false,
+            satanCity: false,
+            baseruCity: false,
+            westCapitol: false
         }
         //Crete character submit button
         $scope.submitCharacter = function () {
@@ -74,6 +90,7 @@ dbcapp.controller(
             $scope.gameMenu.startMenu.state = false;
             $scope.gameMenu.charCreate.state = false;
             $scope.gameMenu.charSelect.state = false;
+            $scope.gameMenu.mainScreen.state = true;
         };
 
         $scope.selectRace = function (raceClass, name) {
@@ -122,7 +139,84 @@ dbcapp.controller(
         $scope.consoleInfo = function (item) {
             console.log(item.target.title);
         };
-
+        $scope.startBattle = function (mapId, enemyId, map) {
+            $scope.currentEnemy = $scope.enemies[mapId].enemyList[enemyId];
+            $scope.currentArea = $scope.enemies[mapId].area;
+            $scope.previousMap = map;
+            $scope.currentMap[map] = false;
+            $scope.toggleBattleStart();
+        };
+        $scope.toggleBattleStart = function () {
+            $scope.battleStart = !$scope.battleStart;
+        };
+        $scope.battle = function () {
+            var player = $scope.player;
+            var enemy = $scope.currentEnemy;
+            var playerAttackInterval = $interval(function () {
+                console.log('player dead: ' + player.isDead)
+                if (player.isDead === true || enemy.hp <= 0) {
+                    console.log('Player or enemy is dead');
+                    player.isDead = false;
+                    player.health.value = player.maxHealth.value;
+                    //Stop interval
+                    $interval.cancel(playerAttackInterval);
+                    $interval.cancel(enemyAttackInterval);
+                }
+                else {
+                    console.log('player turn ');
+                    $scope.playerTurn();
+                }
+            }, 500);
+            var enemyAttackInterval = $interval(function () {
+                if (enemy.hp > 0 && player.isDead === false) {
+                    console.log('enemy attack');
+                    $scope.enemyTurn();
+                }
+                else {
+                    //Stop interval
+                    $interval.cancel(enemyAttackInterval);
+                    $interval.cancel(playerAttackInterval);
+                }
+            }, 600);
+        };
+        $scope.playerTurn = function () {
+            var player = $scope.player;
+            var enemy = $scope.currentEnemy;
+            var skill = player.skills.offensive;
+            for (var key in skill) {
+                if (skill.hasOwnProperty(key)) {
+                    var random = Math.floor((Math.random() * 100) + 1);
+                    if (skill[key].chance >= random) {
+                        console.log('Player used ' + skill[key].name + " and dealt: " + skill[key].damage())
+                        enemy.hp -= skill[key].damage();
+                    }
+                    console.log("Else use basic attack to damage enemy");
+                    //enemy.hp -= player.secondaryStats.damage.value();
+                }
+            }
+        };
+        $scope.enemyTurn = function () {
+            var player = $scope.player;
+            var enemy = $scope.currentEnemy;
+            var skill = player.skills.defensive;
+            var dmgReduce = 0;
+            var enemyDamage = 0;
+            for (var key in skill) {
+                if (skill.hasOwnProperty(key)) {
+                    var random = Math.floor((Math.random() * 100) + 1);
+                    if (skill[key].chance >= random) {
+                        console.log('Player use ' + skill[key].name + " " + "and reduce damage taken by: " + skill[key].damageReduction);
+                        dmgReduce = skill[key].damageReduction;
+                    };
+                };
+            };
+            enemyDamage = 100 - (100 * (dmgReduce / 100));
+            player.health.value -= enemyDamage;
+            console.log('Enemy Dealt ' + enemyDamage)
+            if (player.health.value <= 0) {
+                player.isDead = true;
+            };
+        };
     });
 
 //Add item for testing purposes.

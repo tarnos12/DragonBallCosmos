@@ -1,38 +1,43 @@
 ﻿<img src="Images/map/main.jpg" width="900" height="679" alt="Main map" usemap="#main" ng-show="currentMap.main">
-<img src="Images/map/sub.png" width="600" height="600" alt="Sub map" usemap="#varik" ng-show="currentMap.varik">
-<img src="Images/map/sub.png" width="600" height="600" alt="Sub map" usemap="#forest" ng-show="currentMap.forest">
-<img src="Images/map/sub.png" width="600" height="600" alt="Sub map" usemap="#mountain" ng-show="currentMap.mountain">
+<img src="Images/map/sub.png" width="600" height="600" alt="Sub map" usemap="#gokuHouse" ng-show="currentMap.gokuHouse">
+<img src="Images/map/sub.png" width="600" height="600" alt="Sub map" usemap="#satanCity" ng-show="currentMap.satanCity">
+<img src="Images/map/sub.png" width="600" height="600" alt="Sub map" usemap="#baseruCity" ng-show="currentMap.baseruCity">
+<img src="Images/map/sub.png" width="600" height="600" alt="Sub map" usemap="#westCapitol" ng-show="currentMap.westCapitol">
 <!-- currentMap is main object to store all maps info, hidden/shown. currentMap.[mapName] = true/false-->
+
+<div ng-include="'Views/battle.html'"></div>
+
 <map name='main'>
-    <area alt="" test="xdd" title="Goku House" shape="rect" coords="649,402,722,441" ng-click="consoleInfo($event)"/>
-    <area alt="" title="Satan City" shape="rect" coords="661,298,734,337" ng-click="consoleInfo($event)" />
-    <area alt="" title="Baseru City" shape="rect" coords="306,294,379,333" ng-click="consoleInfo($event)" />
-    <area alt="" title="West Capitol" shape="rect" coords="262,258,335,297" ng-click="consoleInfo($event)" />
+    <area alt="" title="Goku House" shape="rect" coords="649,402,722,441" ng-click="consoleInfo($event); currentMap.main = false; currentMap.gokuHouse = true;"/>
+    <area alt="" title="Satan City" shape="rect" coords="661,298,734,337" ng-click="consoleInfo($event); currentMap.main = false; currentMap.satanCity = true;" />
+    <area alt="" title="Baseru City" shape="rect" coords="306,294,379,333" ng-click="consoleInfo($event); currentMap.main = false; currentMap.baseruCity = true;" />
+    <area alt="" title="West Capitol" shape="rect" coords="262,258,335,297" ng-click="consoleInfo($event); currentMap.main = false; currentMap.westCapitol = true;" />
 </map>
 
-<map name='varik'>
-    <area shape='circle' coords='65,483,15' title='1' />
-    <area shape='circle' coords='161,419,15' title='2' />
-    <area shape='circle' coords='246,337,15' title='3' />
-    <area shape='circle' coords='291,250,16' title='4' />
-    <area shape='circle' coords='321,150,15' title='5' />
-    <area shape='circle' coords='410,96,15' title='6' />
-    <area shape='circle' coords='466,195,15' title='7' />
-    <area shape='circle' coords='493,308,33' title='8' />
-    <area shape='rect' coords='469,7,590,44' title='back' ng-click="currentMap.main = true; currentMap.varik = false;" />
+<map name='gokuHouse'>
+    <!-- Start battle arguments are area/monster id, so 0,0 means "first area, first enemy", 3rd argument is map-->
+    <area shape='circle' coords='65,483,15' title='1' ng-click="startBattle(0, 0, 'gokuHouse')"/>
+    <area shape='circle' coords='161,419,15' title='2' ng-click="startBattle(0, 1, 'gokuHouse')"/>
+    <area shape='circle' coords='246,337,15' title='3' ng-click="startBattle(0, 1, 'gokuHouse')"/>
+    <area shape='circle' coords='291,250,16' title='4' ng-click="startBattle(0, 1, 'gokuHouse')"/>
+    <area shape='circle' coords='321,150,15' title='5' ng-click="startBattle(0, 1, 'gokuHouse')"/>
+    <area shape='circle' coords='410,96,15' title='6' ng-click="startBattle(0, 1, 'gokuHouse')"/>
+    <area shape='circle' coords='466,195,15' title='7' ng-click="startBattle(0, 1, 'gokuHouse')"/>
+    <area shape='circle' coords='493,308,33' title='8' ng-click="startBattle(0, 1, 'gokuHouse')"/>
+    <area shape='rect' coords='469,7,590,44' title='back' ng-click="currentMap.main = true; currentMap.gokuHouse = false;" />
 </map>
-<map name='forest'>
-    <area shape='circle' coords='65,483,15' title='1' />
-    <area shape='circle' coords='161,419,15' title='2' />
-    <area shape='circle' coords='246,337,15' title='3' />
-    <area shape='circle' coords='291,250,16' title='4' />
-    <area shape='circle' coords='321,150,15' title='5' />
-    <area shape='circle' coords='410,96,15' title='6' />
-    <area shape='circle' coords='466,195,15' title='7' />
-    <area shape='circle' coords='493,308,33' title='8' />
-    <area shape='rect' coords='469,7,590,44' title='back' ng-click="currentMap.main = true; currentMap.forest = false;" />
+<map name='satanCity'>
+    <area shape='circle' coords='65,483,15' title='1' ng-click="startBattle(0, 1, 'satanCity')" />
+    <area shape='circle' coords='161,419,15' title='2' ng-click="startBattle(0, 1, 'satanCity')" />
+    <area shape='circle' coords='246,337,15' title='3' ng-click="startBattle(0, 1, 'satanCity')" />
+    <area shape='circle' coords='291,250,16' title='4' ng-click="startBattle(0, 1, 'satanCity')" />
+    <area shape='circle' coords='321,150,15' title='5' ng-click="startBattle(0, 1, 'satanCity')" />
+    <area shape='circle' coords='410,96,15' title='6' ng-click="startBattle(0, 1, 'satanCity')" />
+    <area shape='circle' coords='466,195,15' title='7' ng-click="startBattle(0, 1, 'satanCity')" />
+    <area shape='circle' coords='493,308,33' title='8' ng-click="startBattle(0, 1, 'satanCity')" />
+    <area shape='rect' coords='469,7,590,44' title='back' ng-click="currentMap.main = true; currentMap.satanCity = false;" />
 </map>
-<map name='mountain'>
+<map name='baseruCity'>
     <area shape='circle' coords='65,483,15' title='1' />
     <area shape='circle' coords='161,419,15' title='2' />
     <area shape='circle' coords='246,337,15' title='3' />
@@ -41,5 +46,16 @@
     <area shape='circle' coords='410,96,15' title='6' />
     <area shape='circle' coords='466,195,15' title='7' />
     <area shape='circle' coords='493,308,33' title='8' />
-    <area shape='rect' coords='469,7,590,44' title='back' ng-click="currentMap.main = true; currentMap.mountain = false;" />
+    <area shape='rect' coords='469,7,590,44' title='back' ng-click="currentMap.main = true; currentMap.baseruCity = false;" />
+</map>
+<map name='westCapitol'>
+    <area shape='circle' coords='65,483,15' title='1' />
+    <area shape='circle' coords='161,419,15' title='2' />
+    <area shape='circle' coords='246,337,15' title='3' />
+    <area shape='circle' coords='291,250,16' title='4' />
+    <area shape='circle' coords='321,150,15' title='5' />
+    <area shape='circle' coords='410,96,15' title='6' />
+    <area shape='circle' coords='466,195,15' title='7' />
+    <area shape='circle' coords='493,308,33' title='8' />
+    <area shape='rect' coords='469,7,590,44' title='back' ng-click="currentMap.main = true; currentMap.westCapitol = false;" />
 </map>

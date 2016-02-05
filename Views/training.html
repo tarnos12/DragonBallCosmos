@@ -1,13 +1,21 @@
 ﻿<div class="row LightOrangeBackground">
-    <div class="col-xs-12" ng-repeat="(key, type) in training.stat track by $index">
-        <h4>{{key}}</h4>
+    <div class="col-xs-2" ng-repeat="(name, type) in training.stat track by $index">
+        <button class="btn btn-default" ng-click="trainingToggleTab(name);">{{name}}</button>
         <p>Level: {{type.level}} - [ {{type.minExp}}/{{type.maxExp}} ]</p>
-        <div ng-repeat="(map, x) in type.map track by $index">
-            <h3>{{x.name}}</h3>
-            <p>Level Req:{{x.levelReq}}</p>
-            <p ng-repeat="(stat, value) in x.statGain track by $index">
-                Stat: {{stat}} per tick: {{value($scope)}}
-            </p>
+    </div>
+</div>
+<!-- TO DO: If possible, make it all within a single loop, so training area names(code above) can line up in a single row(see in game) and the content of them will be below-->
+<div class="row LightOrangeBackground">
+    <h3 class="text-center">{{activeTrainingTab | capitalize}}</h3>
+    <div class="col-xs-12" ng-repeat="(name, type) in training.stat track by $index">
+        <div class="row">
+            <div class="col-xs-3" ng-show="trainingTabs[name]" ng-repeat="(map, x) in type.map track by $index">
+                <h3>{{x.name}}</h3>
+                <p>Level Req:{{x.levelReq}}</p>
+                <p ng-repeat="(stat, value) in x.statGain track by $index">
+                    Stat: {{stat}} per tick: {{value($scope)}}
+                </p>
+            </div>
         </div>
     </div>
 </div>

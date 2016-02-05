@@ -50,7 +50,20 @@ dbcapp.controller(
         ];
         //Initialize player inventory
         
-        
+        $scope.trainingTabs = {
+            aquatic: true,
+            jungle: false,
+            rocky: false,
+            desert: false,
+            space: false
+        };
+        $scope.activeTrainingTab = "aquatic";//This is used to hide a right tab when player clicks other tabs.
+        $scope.trainingToggleTab = function (clickedTab) {
+            //swap those 2 lines if you want to be able to hide a tab content completely when clicking on it..
+            $scope.trainingTabs[$scope.activeTrainingTab] = false;//Swap this line
+            $scope.trainingTabs[clickedTab] = true;//with this line
+            $scope.activeTrainingTab = clickedTab;
+        };
         $scope.gameMenu = {
             loadingScreen: {
                 state: false,

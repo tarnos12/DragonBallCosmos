@@ -97,6 +97,45 @@ dbcapp.factory(
             gender: "",
             master: "",
             charType: {},
+            draw: function (ctx,img, x, y, frame) {
+                //116 x 142
+                ctx.drawImage(img, 110 * frame, 0, 116, 142, x, y, 116, 142);
+            }
         };
         return player;
     });
+
+var Player = function (name) {
+    this.name = name;
+    this.isDead = false;
+    this.gold = 0;
+    this.level = 1; //"Account level", heroes will have their own constructor and values.
+    this.experience = 0;
+    this.maxExperience = 100;
+    this.inventorySlots = 30;
+    this.inventory = [];
+    this.itemId = 0;
+};
+
+Player.prototype = function () {
+    //here you can add methods like var add = function(){}, separate them with comma
+    var buy = function (item) {
+            //Buy item, it will be added to everyitem click button like player.buy(this)
+        },
+        sell = function (item) {
+            //Sell item, same as above 
+        },
+        sortInventory = function (sortBy) {
+            //Sort inventory by name/type/value/stat etc. Also inventory can be split into equip/material tabs
+        }
+    return {
+        // return methods so they can be used outside after creating an object like add:add, attack:attack
+        // can use custom name like playerAdd:add, where add is a method and playerAdd is a method we return
+        //other methods which are not returned can still be used by functions, but cannot be called directly outside.
+        //so if there are 2 methods add and substract and you return add:add, then you can only call Object.add();
+        //and your add method can use/call substract but you are unable to do Object.substract();
+        buy: buy,
+        sell: sell,
+        sortInventory:sortInventory
+    }
+}();

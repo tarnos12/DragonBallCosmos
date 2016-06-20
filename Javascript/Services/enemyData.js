@@ -49,4 +49,4 @@ function getEnemies() {
         enemyInfo = {};
     }
     return enemyByArea;
-}
+};

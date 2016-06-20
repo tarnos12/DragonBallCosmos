@@ -31,7 +31,7 @@ dbcapp.controller(
         $scope.currentEnemy = {};
         $scope.currentArea = "";
         $scope.previousMap = "";
-        $scope.battleStart = false;//Used to hide map and open battle screen
+        $scope.battleStart = true   ;//Used to hide map and open battle screen
 
         //Initial Objects
        
@@ -161,6 +161,9 @@ dbcapp.controller(
         };
         $scope.toggleBattleStart = function () {
             $scope.battleStart = !$scope.battleStart;
+            $scope.currentEnemy = $scope.enemies[0].enemyList[0]; // adding an enemy for testing
+            console.log($scope.player);
+            createBattleCanvas($scope.player, $scope.currentEnemy);
         };
         $scope.battle = function () {
             var player = $scope.player;
@@ -281,3 +284,46 @@ function equipStatTotal(statString, equippedItems) {
     };
     return total;
 };
+
+var battle = {
+    update: function (player, enemy) {
+        
+    },
+    draw: function (player,enemy) {
+
+    }
+}
+
+function createBattleCanvas(player, enemy) {
+    var canvas = document.getElementById('battleCanvas');
+    var ctx = canvas.getContext('2d');
+    var SIZE = 32;
+    var loop = 0;
+    var maxLoops = 4;
+    var speed = 10;
+    var currentframe = 0;
+    canvas.width = 20 * SIZE;
+    canvas.height = 15 * SIZE;
+    var img;
+    var preloadImages = function () {
+        img = new Image();
+        img.onload = function () {
+            requestAnimationFrame(gameLoop);
+        }
+        img.src = "Images/sprites/goku.png";
+    }
+
+    var gameLoop = function () {
+        player.draw(ctx, img, 30, 30, loop);
+        currentframe++;
+        if (currentframe >= speed) {
+            loop++;
+            currentframe = 0;
+        }
+        if (loop > maxLoops) {
+            loop = 0;
+        }
+        requestAnimationFrame(gameLoop);
+    };
+    preloadImages();
+}

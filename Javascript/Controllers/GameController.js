@@ -119,34 +119,7 @@ dbcapp.controller(
             $scope.raceSelected = !$scope.raceSelected;
         };
 
-        $scope.addItemInventory = function () {
-            var itemDataInv = {};
-            itemDataInv = itemData.items;
-            var id = $scope.player.itemId;
-            var item = addItem(itemDataInv, id);
-            $scope.player.itemId++;
-            $scope.player.inventory.push(item);
-        }
-        $scope.unequip = function (type, id) {
-            var item = $scope.player.equippedItems[type];
-            item.isEquipped = false;
-            $scope.player.inventory.push(item);
-            $scope.player.equippedItems[type] = {};
-        }
-        $scope.equip = function (type, id) {
-            var inventoryObj = $scope.player.inventory;
-            var item = filterItemId(inventoryObj, id);
-            var equippedItem = $scope.player.equippedItems[type];
-            if (equippedItem.isEquipped === true) {
-                $scope.unequip(equippedItem.itemType, equippedItem.id);
-            };
-            item.isEquipped = true;
-            $scope.player.equippedItems[type] = item;
-            var index = $scope.player.inventory.indexOf(item, 0);
-            if (index > -1) {
-                $scope.player.inventory.splice(index, 1);
-            };
-        }
+        
 
         //I am using this with html area map when clicking on an element.
         $scope.consoleInfo = function (item) {
@@ -233,6 +206,24 @@ dbcapp.controller(
                 player.isDead = true;
             };
         };
+        $scope.addNewHero = function () {
+            var goku = new Hero("Goku");
+            window.goku = goku;//so you can watch it and call methods in browser console
+            console.log(goku);
+            
+            //sx,sy = where to start cutting image, (x,y position on our image)
+            //sw,sh = size of our "cut", if sx is 20 and sw is 20 then our image will be cut starting at x:20 up to x:40
+            //dx,dy = destination where we place our "cut" image on canvas
+            //dw,dh = resize our "cut" image, if we want to or set size same as sw,sh to set original value
+            var idle = [[{
+                sx:23, sy:113, sw: 32, sh: 48, dx: 100, dy: 200, dw: 64, dh: 96,
+                delay: 3, timer: 20, frame: 0, currentSpeed: 0, speed: 33, maxFrame: 3,
+                playForward:true,//play forward animation, together with 'repeat' it will make a loop
+                repeat: true//This will repeat image animation from start to end, and from end to start like 1,2,3,2,1 to make it look nice
+            }]];
+
+            goku.addAnimation(idle);
+        };
     });
 
 //Add item for testing purposes.
@@ -298,10 +289,6 @@ function createBattleCanvas(player, enemy) {
     var canvas = document.getElementById('battleCanvas');
     var ctx = canvas.getContext('2d');
     var SIZE = 32;
-    var loop = 0;
-    var maxLoops = 4;
-    var speed = 10;
-    var currentframe = 0;
     canvas.width = 20 * SIZE;
     canvas.height = 15 * SIZE;
     var img;
@@ -310,19 +297,12 @@ function createBattleCanvas(player, enemy) {
         img.onload = function () {
             requestAnimationFrame(gameLoop);
         }
-        img.src = "Images/sprites/goku.png";
+        img.src = "Images/sprites/hero.png";
     }
 
     var gameLoop = function () {
-        player.draw(ctx, img, 30, 30, loop);
-        currentframe++;
-        if (currentframe >= speed) {
-            loop++;
-            currentframe = 0;
-        }
-        if (loop > maxLoops) {
-            loop = 0;
-        }
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        goku.draw(ctx, img);
         requestAnimationFrame(gameLoop);
     };
     preloadImages();

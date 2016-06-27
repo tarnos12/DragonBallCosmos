@@ -3,7 +3,6 @@
 dbcapp.factory(
     'trainingData',
     function (playerData) {
-        console.log(playerData);
         var player = playerData;
         var training = {
             stat: {

@@ -3,7 +3,7 @@
 dbcapp.factory(
     'playerData',
     function ($http) {
-        
+
         var player = {
             isDead: false,
             level: 1,
@@ -11,7 +11,7 @@ dbcapp.factory(
             maxExperience: 100,
             inventorySlots: 30,
             itemId: 0,
-            skills:[],
+            skills: [],
             inventory: [],
             equippedItems: {
                 helmet: {
@@ -97,7 +97,7 @@ dbcapp.factory(
             gender: "",
             master: "",
             charType: {},
-            draw: function (ctx,img, x, y, frame) {
+            draw: function (ctx, img, x, y, frame) {
                 //116 x 142
                 ctx.drawImage(img, 110 * frame, 0, 116, 142, x, y, 116, 142);
             }
@@ -120,13 +120,41 @@ var Player = function (name) {
 Player.prototype = function () {
     //here you can add methods like var add = function(){}, separate them with comma
     var buy = function (item) {
-            //Buy item, it will be added to everyitem click button like player.buy(this)
-        },
+        //Buy item, it will be added to everyitem click button like player.buy(this)
+    },
         sell = function (item) {
             //Sell item, same as above 
         },
         sortInventory = function (sortBy) {
             //Sort inventory by name/type/value/stat etc. Also inventory can be split into equip/material tabs
+        },
+        addItemInventory = function () {
+            var itemDataInv = {};
+            itemDataInv = itemData.items;
+            var id = $scope.player.itemId;
+            var item = addItem(itemDataInv, id);
+            $scope.player.itemId++;
+            $scope.player.inventory.push(item);
+        },
+        unequip = function (type, id) {
+            var item = $scope.player.equippedItems[type];
+            item.isEquipped = false;
+            $scope.player.inventory.push(item);
+            $scope.player.equippedItems[type] = {};
+        },
+        equip = function (type, id) {
+            var inventoryObj = $scope.player.inventory;
+            var item = filterItemId(inventoryObj, id);
+            var equippedItem = $scope.player.equippedItems[type];
+            if (equippedItem.isEquipped === true) {
+                $scope.unequip(equippedItem.itemType, equippedItem.id);
+            };
+            item.isEquipped = true;
+            $scope.player.equippedItems[type] = item;
+            var index = $scope.player.inventory.indexOf(item, 0);
+            if (index > -1) {
+                $scope.player.inventory.splice(index, 1);
+            };
         }
     return {
         // return methods so they can be used outside after creating an object like add:add, attack:attack
@@ -136,6 +164,6 @@ Player.prototype = function () {
         //and your add method can use/call substract but you are unable to do Object.substract();
         buy: buy,
         sell: sell,
-        sortInventory:sortInventory
+        sortInventory: sortInventory
     }
 }();

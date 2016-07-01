@@ -9,5 +9,6 @@ dbcapp.factory(
         $http.get('json/items.json').success(function (data) {
             itemList.items = data;
         });
+        window.itemList = itemList;
         return itemList;
     });

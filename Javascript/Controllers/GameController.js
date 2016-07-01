@@ -9,7 +9,6 @@ dbcapp.controller(
         itemData,
         raceData,
         charCreationData,
-        trainingData,
         enemyData,
         skillData,
         $http,
@@ -23,33 +22,26 @@ dbcapp.controller(
         $scope.itemList = itemData.items;
         $scope.raceList = raceData;
         $scope.charCreation = charCreationData;
-        $scope.training = trainingData;
         $scope.enemies = enemyData;
         $scope.skills = skillData;
-        $scope.player.skills.offensive = $scope.skills.offensive;
-        $scope.player.skills.defensive = $scope.skills.defensive;
         $scope.currentEnemy = {};
         $scope.currentArea = "";
         $scope.previousMap = "";
-        $scope.battleStart = true   ;//Used to hide map and open battle screen
+        $scope.battleStart = true;//Used to hide map and open battle screen
 
         //Initial Objects
-       
-        $scope.random = function () {
-            var randomHp = Math.floor(Math.random() * 10 + 1);
-            var randomEnergy = Math.floor(Math.random() * 10 + 1);
-            $scope.player.health.value = randomHp;
-            $scope.player.energy.value = randomEnergy;
-        };
+
+        
         //Can be used for dynamic
         $scope.tabs = [
             { title: 'Battle', content: 'Views/battle.html' },
+            { title: 'Team', content: 'Views/team.html', disabled: false },
             { title: 'Training', content: 'Views/training.html', disabled: false },
             { title: 'Mission', content: 'Views/mission.html', disabled: false },
             { title: 'Map', content: 'Views/map.html', disabled: false }
         ];
         //Initialize player inventory
-        
+
         $scope.trainingTabs = {
             aquatic: true,
             jungle: false,
@@ -71,8 +63,8 @@ dbcapp.controller(
             startMenu: {
                 state: true,
             },
-            mainScreen:{
-                stat:false,
+            mainScreen: {
+                stat: false,
             },
             charSelect: {
                 state: false,
@@ -104,6 +96,16 @@ dbcapp.controller(
             $scope.gameMenu.charCreate.state = false;
             $scope.gameMenu.charSelect.state = false;
             $scope.gameMenu.mainScreen.state = true;
+
+            var goku = new Hero("Goku");
+            goku.init();
+            $scope.player.team.push(goku);
+            var vegeta = new Hero("Vegeta");
+            vegeta.init();
+            $scope.player.team.push(vegeta);
+            var gohan = new Hero("Gohan");
+            gohan.init();
+            $scope.player.team.push(gohan);
         };
 
         $scope.selectRace = function (raceClass, name) {
@@ -119,7 +121,7 @@ dbcapp.controller(
             $scope.raceSelected = !$scope.raceSelected;
         };
 
-        
+
 
         //I am using this with html area map when clicking on an element.
         $scope.consoleInfo = function (item) {
@@ -210,15 +212,15 @@ dbcapp.controller(
             var goku = new Hero("Goku");
             window.goku = goku;//so you can watch it and call methods in browser console
             console.log(goku);
-            
+
             //sx,sy = where to start cutting image, (x,y position on our image)
             //sw,sh = size of our "cut", if sx is 20 and sw is 20 then our image will be cut starting at x:20 up to x:40
             //dx,dy = destination where we place our "cut" image on canvas
             //dw,dh = resize our "cut" image, if we want to or set size same as sw,sh to set original value
             var idle = [[{
-                sx:23, sy:113, sw: 32, sh: 48, dx: 100, dy: 200, dw: 64, dh: 96,
+                sx: 23, sy: 113, sw: 32, sh: 48, dx: 100, dy: 200, dw: 64, dh: 96,
                 delay: 3, timer: 20, frame: 0, currentSpeed: 0, speed: 33, maxFrame: 3,
-                playForward:true,//play forward animation, together with 'repeat' it will make a loop
+                playForward: true,//play forward animation, together with 'repeat' it will make a loop
                 repeat: true//This will repeat image animation from start to end, and from end to start like 1,2,3,2,1 to make it look nice
             }]];
 
@@ -226,61 +228,13 @@ dbcapp.controller(
         };
     });
 
-//Add item for testing purposes.
-function addItem(itemData, id) {
-    var item = {};
-    var count = 0;
-    var randomItem;
-    var type;
-    var itemReturn = {};
-    for (var prop in itemData) {
-        if (Math.random() < 1 / ++count) {
-            item = itemData[prop];
-            type = prop;
-        };
-    };
-    var randomItem = item[Math.floor(Math.random() * item.length)];
-    for (var key in randomItem) {
-        if (randomItem.hasOwnProperty(key)) {
-            itemReturn[key] = {};
-            itemReturn[key] = randomItem[key];
-        };
-    };
-    itemReturn['id'] = id;
-    itemReturn['itemType'] = type;
-    itemReturn['isEquipped'] = false;
-    return itemReturn;
-};
 
-function filterItemId(obj, id) {
-    var item = obj.filter(function (e) {
-        return e.id === id;
-    })[0];
-    return item;
-};
-//Callback function, calculate equipped items stat for player object inside a controller.
-function equipStatTotal(statString, equippedItems) {
-    var total = 0;
-    for (var key in equippedItems) {
-        if (equippedItems.hasOwnProperty(key)) {
-            var stat = equippedItems[key].stats[statString];
-            if (stat !== undefined) {
-                total += stat;
-            }
-            else {
-                equippedItems[key].stats[statString] = 0;
-                total += 0;
-            };
-        };
-    };
-    return total;
-};
 
 var battle = {
     update: function (player, enemy) {
-        
+
     },
-    draw: function (player,enemy) {
+    draw: function (player, enemy) {
 
     }
 }

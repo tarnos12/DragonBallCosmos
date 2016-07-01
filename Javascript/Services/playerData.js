@@ -4,104 +4,7 @@ dbcapp.factory(
     'playerData',
     function ($http) {
 
-        var player = {
-            isDead: false,
-            level: 1,
-            experience: 0,
-            maxExperience: 100,
-            inventorySlots: 30,
-            itemId: 0,
-            skills: [],
-            inventory: [],
-            equippedItems: {
-                helmet: {
-                    stats: {}
-                },
-                weapon: {
-                    stats: {}
-                },
-                chest: {
-                    stats: {}
-                },
-                offHand: {
-                    stats: {}
-                },
-                wrist: {
-                    stats: {}
-                },
-                boots: {
-                    stats: {}
-                },
-                special: {
-                    stats: {}
-                }
-            },
-            health: { name: "Life Points", value: 1000, description: 'Life Force, if it becomes 0, you die' },
-            maxHealth: { name: "Max Life Points", value: 1000 },
-            healthPerCent: function () {
-                return this.health.value / this.maxHealth.value * 100;
-            },
-            energy: { name: "Ki Points", value: 10, description: 'Energy, required to use various techniques' },
-            maxEnergy: { name: "Max Ki Points", value: 10 },
-            energyPercent: function () {
-                return this.energy.value / this.maxEnergy.value * 100;
-            },
-            baseStats: {
-                strength: { name: "Strength", value: 1, description: 'Increase physical damage' },
-                speed: { name: "Speed", value: 1, description: 'Evasion, turn order' },
-                persistence: { name: "Persistence", value: 1, description: 'Decrease damage taken' },
-                intelligence: { name: "Intelligence", value: 1, description: 'Training Speed' },
-            },
-            name: "",
-            race: {
-                Stats: {
-                    strength: 0,
-                    speed: 0,
-                    persistence: 0,
-                    intelligence: 0
-                }
-            },
-            equipStats: {
-                strength: function () {
-                    var total = equipStatTotal('strength', player.equippedItems);
-                    return total;
-                },
-                speed: function () {
-                    var total = equipStatTotal('speed', player.equippedItems);
-                    return total;
-                },
-                persistence: function () {
-                    var total = equipStatTotal('persistence', player.equippedItems);
-                    return total;
-                },
-                intelligence: function () {
-                    var total = equipStatTotal('intelligence', player.equippedItems);
-                    return total;
-                },
-            },
-            totalStats: {
-                strength: function () {
-                    return player.baseStats.strength.value + player.race.Stats.strength + player.equipStats.strength();
-                },
-                speed: function () {
-                    return player.baseStats.speed.value + player.race.Stats.speed + player.equipStats.speed();
-                },
-                persistence: function () {
-                    return player.baseStats.persistence.value + player.race.Stats.persistence + player.equipStats.persistence();
-                },
-                intelligence: function () {
-                    return player.baseStats.intelligence.value + player.race.Stats.intelligence + player.equipStats.intelligence();
-                },
-
-            },
-            gender: "",
-            master: "",
-            charType: {},
-            draw: function (ctx, img, x, y, frame) {
-                //116 x 142
-                ctx.drawImage(img, 110 * frame, 0, 116, 142, x, y, 116, 142);
-            }
-        };
+        var player = new Player("Tester");
         return player;
     });
 
@@ -115,6 +18,8 @@ var Player = function (name) {
     this.inventorySlots = 30;
     this.inventory = [];
     this.itemId = 0;
+    this.team = []; //Store our characters or "active" members, we can have some other array to store all other characters we arent using
+    this.currentTeamTab = 0; //This will be used to display info about currenty selected hero from our team, it will work like a tab
 };
 
 Player.prototype = function () {
@@ -130,31 +35,67 @@ Player.prototype = function () {
         },
         addItemInventory = function () {
             var itemDataInv = {};
-            itemDataInv = itemData.items;
-            var id = $scope.player.itemId;
+            itemDataInv = itemList.items;
+            var id = this.itemId;
             var item = addItem(itemDataInv, id);
-            $scope.player.itemId++;
-            $scope.player.inventory.push(item);
+            this.itemId++;
+            this.inventory.push(item);
         },
-        unequip = function (type, id) {
-            var item = $scope.player.equippedItems[type];
+        //Add item for testing purposes.
+       addItem = function(itemData, id) {
+        var item = {};
+        var count = 0;
+        var randomItem;
+        var type;
+        var itemReturn = {};
+        for (var prop in itemData) {
+            if (Math.random() < 1 / ++count) {
+                item = itemData[prop];
+                type = prop;
+            };
+        };
+        var randomItem = item[Math.floor(Math.random() * item.length)];
+        for (var key in randomItem) {
+            if (randomItem.hasOwnProperty(key)) {
+                itemReturn[key] = {};
+                itemReturn[key] = randomItem[key];
+            };
+        };
+        itemReturn['id'] = id;
+        itemReturn['itemType'] = type;
+        itemReturn['isEquipped'] = false;
+        return itemReturn;
+    },
+
+     filterItemId = function (obj, id) {
+        var item = obj.filter(function (e) {
+            return e.id === id;
+        })[0];
+        return item;
+    },
+        unequip = function (type) {
+            var item = this.team[this.currentTeamTab].equippedItems[type];
             item.isEquipped = false;
-            $scope.player.inventory.push(item);
-            $scope.player.equippedItems[type] = {};
+            this.inventory.push(item);
+            this.team[this.currentTeamTab].equippedItems[type] = {};
+
+            this.team[this.currentTeamTab].updateEquipStats();
         },
         equip = function (type, id) {
-            var inventoryObj = $scope.player.inventory;
+            var inventoryObj = this.inventory;
             var item = filterItemId(inventoryObj, id);
-            var equippedItem = $scope.player.equippedItems[type];
+            var equippedItem = this.team[this.currentTeamTab].equippedItems[type];
             if (equippedItem.isEquipped === true) {
-                $scope.unequip(equippedItem.itemType, equippedItem.id);
+                var that = this;
+                this.unequip(equippedItem.itemType, that);
             };
             item.isEquipped = true;
-            $scope.player.equippedItems[type] = item;
-            var index = $scope.player.inventory.indexOf(item, 0);
+            this.team[this.currentTeamTab].equippedItems[type] = item;
+            var index = this.inventory.indexOf(item, 0);
             if (index > -1) {
-                $scope.player.inventory.splice(index, 1);
+                this.inventory.splice(index, 1);
             };
+            this.team[this.currentTeamTab].updateEquipStats();
         }
     return {
         // return methods so they can be used outside after creating an object like add:add, attack:attack
@@ -164,6 +105,9 @@ Player.prototype = function () {
         //and your add method can use/call substract but you are unable to do Object.substract();
         buy: buy,
         sell: sell,
-        sortInventory: sortInventory
+        sortInventory: sortInventory,
+        addItemInventory: addItemInventory,//this is for testing only, as it adds random item to inventory
+        equip: equip,
+        unequip:unequip
     }
 }();

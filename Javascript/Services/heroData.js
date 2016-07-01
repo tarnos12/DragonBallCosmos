@@ -5,6 +5,8 @@ var Hero = function (name) {
     this.animationQueue = [];//This will be used to store a skill/idle/attack animation sequence.
     this.equippedItems = {
         helmet: {},
+        offHand: {},
+        wrist:{},
         chest: {},
         boots: {},
         weapon: {},
@@ -27,6 +29,10 @@ var Hero = function (name) {
         primary: {},//Strength/Persistence/Speed etc.
         secondary: {}//Critical rate/Gold Find/Magic Find/Dodge etc.
     };
+    this.totalStats = {
+        primary: {},
+        secondary: {}
+        };
     this.currentAnimation = "powerUp";
 
 };
@@ -52,6 +58,7 @@ Hero.prototype = function () {
                 };
             };
         };
+        this.updateTotalStats();
     },
     attack = function (enemy) {
         //takes currently selected enemy(random enemy if battles are automatic or enemy choosen by AI which can be done later);
@@ -76,67 +83,61 @@ Hero.prototype = function () {
         //There is no need for angular to constantly update it.
     updateEquipStats = function () {
         //We loop through all equipped item, so we can update "this" hero stats.
+        this.equipStats.primary = {};
+        this.equipStats.secondary = {};
         for (var key in this.equippedItems) {
             if (this.equippedItems.hasOwnProperty(key)) {
-                var item = this.equippedItems[key];
-                var total_Primary = 0;
-                var total_Secondary = 0;
+                var item = this.equippedItems[key].stats;
                 for (var stat_property in item) {
                     if (item.hasOwnProperty(stat_property)) {
                         var stat = item[stat_property];
-                        if (this.baseStats.primary[stat_property] !== undefined) {
-                            //If equipped item stat matches a property of base stat i.e. Strength/Intelligence
-                            if (total_Primary[stat_property] !== undefined) {
-                                total_Primary[stat_property] += stat;
-                            }
-                            else {
-                                total_Primary[stat_property] = stat;
+                        for (var itemStat in stat) {
+                            if (stat.hasOwnProperty(itemStat)) {
+                                var value = stat[itemStat];
+                                if (this.baseStats.primary[itemStat] !== undefined) {
+                                    //If equipped item stat matches a property of base stat i.e. Strength/Intelligence
+                                    if (this.equipStats.primary[itemStat] !== undefined) {
+                                        this.equipStats.primary[itemStat] += value;
+                                    }
+                                    else {
+                                        this.equipStats.primary[itemStat] = value;
+                                    };
+                                }
+                                else if (this.baseStats.secondary[itemStat] !== undefined) {
+                                    //Else if stat is not base i.e. Critical Chance/Gold Find/Dodge
+                                    if (this.equipStats.secondary[itemStat] !== undefined) {
+                                        this.equipStats.secondary[itemStat] += value;
+                                    }
+                                    else {
+                                        //this basically create a property and assign first value
+                                        //unlike above where its incremented by a value of stat
+                                        //incrementing won't work if property does not exist yet
+                                        //but we can assign a value and create a property at the same time.
+                                        this.equipStats.secondary[itemStat] = value;
+                                    };
+                                }
+                                else {
+                                    //This is where we can perhaps add an option to remove a property from an item
+                                    //if a property no longer exist in the game since we can add/remove stuff
+                                    //we can remove dodge/evasion if it no longer exist etc.
+                                }
+                                //if hero does not have a property it will create it for us
+                                //usefull when we decide to add new property to item like "gold find"
+                                //so we don't need to change properties here. We also don't need to save them
+                                //We can just recreate them with this function when we load a game etc.
+                                //Loop through player.heroes which is an array then loop each hero equipped items.
                             };
-                        }
-                        else if (this.baseStats.secondary[stat_property] !== undefined) {
-                            //Else if stat is not base i.e. Critical Chance/Gold Find/Dodge
-                            this.equipStats.secondary[stat_property] += stat;
-                            if (total_Secondary[stat_property] !== undefined) {
-                                total_Secondary[stat_property] += stat;
-                            }
-                            else {
-                                //this basically create a property and assign first value
-                                //unlike above where its incremented by a value of stat
-                                //incrementing won't work if property does not exist yet
-                                //but we can assign a value and create a property at the same time.
-                                total_Secondary[stat_property] = stat;
-                            };
-                        }
-                        else {
-                            //This is where we can perhaps add an option to remove a property from an item
-                            //if a property no longer exist in the game since we can add/remove stuff
-                            //we can remove dodge/evasion if it no longer exist etc.
-                        }
-                        //if hero does not have a property it will create it for us
-                        //usefull when we decide to add new property to item like "gold find"
-                        //so we don't need to change properties here. We also don't need to save them
-                        //We can just recreate them with this function when we load a game etc.
-                        //Loop through player.heroes which is an array then loop each hero equipped items.
+                        };
                     };
                 };
-
                 //The reason for using a variable to store total stat is so the values will reset to 0
                 //so each time you call this function to update values they will be added from 0
                 //since we are adding up stats from each equipped item using loops, this will help in future
                 //if we change//add/remove stats/item slots etc.
-                for (var primary_key in total_Primary) {
-                    if (total_Primary.hasOwnProperty(primary_key)) {
-                        this.equipStats.primary[primary_key] = total_Primary[primary_key];
-                    };
-                };
-                for (var secondary_key in total_Secondary) {
-                    if (total_Secondary.hasOwnProperty(secondary_key)) {
-                        this.equipStats.secondary[secondary_key] = total_Secondary[secondary_key];
-                    };
-                };
+                
             };
+            this.updateTotalStats();
         };
-
     },
     updateTotalStats = function () {
         for (var key in this.baseStats.primary) {
@@ -144,7 +145,7 @@ Hero.prototype = function () {
                 //Update primary stat like strength/speed/intelligence
                 this.totalStats.primary[key] =
                     this.baseStats.primary[key] +
-                    this.equipStats.primary[key];
+                    (this.equipStats.primary[key] || 0); // That is good stuff :O if primary[key] is undefined then put 0 instead...
             };
         };
         for (var key_secondary in this.baseStats.secondary) {
@@ -152,7 +153,7 @@ Hero.prototype = function () {
                 //Update total secondary stats like critical/dodge
                 this.totalStats.secondary[key_secondary] =
                     this.baseStats.secondary[key_secondary] +
-                    this.equipStats.secondary[key_secondary];
+                    (this.equipStats.secondary[key_secondary] || 0); // Same as above, good stuff :P
             };
         };
     },
@@ -255,6 +256,7 @@ Hero.prototype = function () {
 
     return {
         //return methods so they can be called
+        init:init,
         attack: attack,
         equip: equip,
         unequip: unequip,

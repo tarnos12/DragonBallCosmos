@@ -3,6 +3,7 @@
 dbcapp.factory(
     'trainingData',
     function (playerData) {
+        //This needs a rework, due to some changes, instead of player we will have "hero" each character will need to be implemented here
         var player = playerData;
         var training = {
             stat: {

@@ -1,6 +1,7 @@
 ﻿<div ng-show="gameMenu.mainScreen.state">
     <uib-tabset>
         <uib-tab heading="Inventory & Stats">
+            <!--Those are separate because they are displayed togethere in the same tab-->
             <div ng-include="'Views/equippedItems.html'"></div>
             <div ng-include="'Views/inventory.html'"></div>
         </uib-tab>

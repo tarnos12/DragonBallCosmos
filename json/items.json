@@ -1,171 +1,185 @@
 ﻿{
-    "weapon": [
-        {
-            "name": "Training Sword",
-            "image": "weapon/TrainingSword.png",
-            "stats": 
-                {
-                    "strength": 4,
-                    "speed": 2,
-                    "persistence": 1,
-                    "intelligence": 1
-                }
-        },
-        {
-            "name": "Pole",
-            "image": "weapon/Pole.png",
-            "stats": 
-                {
-                    "strength": 4,
-                    "speed": 2,
-                    "persistence": 1,
-                    "intelligence": 1
-                }
+  "boots": [
+    {
+      "name": "Boots",
+      "image": "boots/Boots.png",
+      "stats": {
+        "primary": {
+          "strength": 4,
+          "speed": 2,
+          "persistence": 1,
+          "intelligence": 1
         }
+      }
+    },
+    {
+      "name": "Green Boots",
+      "image": "boots/SmallBoots.png",
+      "stats": {
+        "primary": {
+          "strength": 4,
+          "speed": 2,
+          "persistence": 1,
+          "intelligence": 1
+        }
+      }
+    }
+  ],
+  "chest": [
+    {
+      "name": "Armor",
+      "image": "chest/BasicArmor.png",
+      "stats": {
+        "primary": {
+          "strength": 4,
+          "speed": 2,
+          "persistence": 1,
+          "intelligence": 1
+        }
+      }
+    },
+    {
+      "name": "Strong Armor",
+      "image": "chest/StrongArmor.png",
+      "stats": {
+        "primary": {
+          "strength": 4,
+          "speed": 2,
+          "persistence": 1,
+          "intelligence": 1
+        }
+      }
+    }
+  ],
+  "helmet": [
+    {
+      "name": "Horn Helmet",
+      "image": "helmet/HornHelmet.png",
+      "stats": {
+        "primary": {
+          "strength": 4,
+          "speed": 2,
+          "persistence": 1,
+          "intelligence": 1
+        }
+      }
+    },
+    {
+      "name": "Ox-King Helm",
+      "image": "helmet/Ox-KingHelmet.png",
+      "stats": {
+        "primary": {
+          "strength": 4,
+          "speed": 2,
+          "persistence": 1,
+          "intelligence": 1
+        }
+      }
+    }
+  ],
+  "offHand": [
+    {
+      "name": "Small Shield",
+      "image": "offHand/SmallShield.png",
+      "stats": {
+        "primary": {
+          "strength": 4,
+          "speed": 2,
+          "persistence": 1,
+          "intelligence": 1
+        }
+      }
+    },
+    {
+      "name": "Strong Shield",
+      "image": "offHand/StrongShield.png",
+      "stats": {
+        "primary": {
+          "strength": 4,
+          "speed": 2,
+          "persistence": 1,
+          "intelligence": 1
+        }
+      }
+    }
+  ],
+  "special": [
+    {
+      "name": "Dragon Radar",
+      "image": "special/DragonRadar.png",
+      "stats": {
+        "primary": {
+          "strength": 4,
+          "speed": 2,
+          "persistence": 1,
+          "intelligence": 1
+        }
+      }
+    },
+    {
+      "name": "Ninbus",
+      "image": "special/Ninbus.png",
+      "stats": {
+        "primary": {
+          "strength": 4,
+          "speed": 2,
+          "persistence": 1,
+          "intelligence": 1
+        }
+      }
+    }
+  ],
+  "weapon": [
+    {
+      "name": "Training Sword",
+      "image": "weapon/TrainingSword.png",
+      "stats": {
+        "primary": {
+          "strength": 4,
+          "speed": 2,
+          "persistence": 1,
+          "intelligence": 1
+        }
+      }
+    },
+    {
+      "name": "Pole",
+      "image": "weapon/Pole.png",
+      "stats": {
+        "primary": {
+          "strength": 4,
+          "speed": 2,
+          "persistence": 1,
+          "intelligence": 1
+        }
+      }
+    }
 
-    ],
-    "chest": [
-        {
-            "name": "Armor",
-            "image": "chest/BasicArmor.png",
-            "stats": 
-                {
-                    "strength": 4,
-                    "speed": 2,
-                    "persistence": 1,
-                    "intelligence": 1
-                }
-        },
-        {
-            "name": "Strong Armor",
-            "image": "chest/StrongArmor.png",
-            "stats": 
-                {
-                    "strength": 4,
-                    "speed": 2,
-                    "persistence": 1,
-                    "intelligence": 1
-                }
+  ],
+  "wrist": [
+    {
+      "name": "Wrists",
+      "image": "wrist/Wrist.png",
+      "stats": {
+        "primary": {
+          "strength": 4,
+          "speed": 2,
+          "persistence": 1,
+          "intelligence": 1
         }
-    ],
-    "helmet": [
-        {
-            "name": "Horn Helmet",
-            "image": "helmet/HornHelmet.png",
-            "stats": 
-                {
-                    "strength": 4,
-                    "speed": 2,
-                    "persistence": 1,
-                    "intelligence": 1
-                }
-        },
-        {
-            "name": "Ox-King Helm",
-            "image": "helmet/Ox-KingHelmet.png",
-            "stats": 
-                {
-                    "strength": 4,
-                    "speed": 2,
-                    "persistence": 1,
-                    "intelligence": 1
-                }
+      }
+    },
+    {
+      "name": "Blue Wrists",
+      "image": "wrist/Wrist.png",
+      "stats": {
+        "primary": {
+          "strength": 4,
+          "speed": 2,
+          "persistence": 1,
+          "intelligence": 1
         }
-    ],
-    "offHand": [
-        {
-            "name": "Small Shield",
-            "image": "offHand/SmallShield.png",
-            "stats": 
-                {
-                    "strength": 4,
-                    "speed": 2,
-                    "persistence": 1,
-                    "intelligence": 1
-                }
-        },
-        {
-            "name": "Strong Shield",
-            "image": "offHand/StrongShield.png",
-            "stats": 
-                {
-                    "strength": 4,
-                    "speed": 2,
-                    "persistence": 1,
-                    "intelligence": 1
-                }
-        }
-    ],
-    "boots": [
-        {
-            "name": "Boots",
-            "image": "boots/Boots.png",
-            "stats": 
-                {
-                    "strength": 4,
-                    "speed": 2,
-                    "persistence": 1,
-                    "intelligence": 1
-                }
-        },
-        {
-            "name": "Green Boots",
-            "image": "boots/SmallBoots.png",
-            "stats": 
-                {
-                    "strength": 4,
-                    "speed": 2,
-                    "persistence": 1,
-                    "intelligence": 1
-                }
-        }
-    ],
-    "wrist": [
-        {
-            "name": "Wrists",
-            "image": "wrist/Wrist.png",
-            "stats": 
-                {
-                    "strength": 4,
-                    "speed": 2,
-                    "persistence": 1,
-                    "intelligence": 1
-                }
-        },
-        {
-            "name": "Blue Wrists",
-            "image": "wrist/Wrist.png",
-            "stats": 
-                {
-                    "strength": 4,
-                    "speed": 2,
-                    "persistence": 1,
-                    "intelligence": 1
-                }
-        }
-    ],
-    "special": [
-        {
-            "name": "Dragon Radar",
-            "image": "special/DragonRadar.png",
-            "stats": 
-                {
-                    "strength": 4,
-                    "speed": 2,
-                    "persistence": 1,
-                    "intelligence": 1
-                }
-        },
-        {
-            "name": "Ninbus",
-            "image": "special/Ninbus.png",
-            "stats": 
-                {
-                    "strength": 4,
-                    "speed": 2,
-                    "persistence": 1,
-                    "intelligence": 1
-                }
-        }
-    ]
+      }
+    }
+  ]
 }

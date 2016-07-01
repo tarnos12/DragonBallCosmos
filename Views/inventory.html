@@ -2,8 +2,8 @@
     <div class="col-xs-12">
         <div class="row">
             <div class="col-xs-12">
-                 <h3 class="text-center">Inventory({{player.inventory.length}})</h3>
-                <button class="btn btn-default" ng-click="addItemInventory()">Get random item</button>
+                 <h3 class="text-center">Inventory({{player.inventory.length + "/" + player.inventorySlots}})</h3>
+                <button class="btn btn-default" ng-click="player.addItemInventory()">Get random item</button>
             </div>
         </div>
         <div class="row">
@@ -17,13 +17,15 @@
                             <span>
                                 <img class="callout" src="/Images/callout.gif" />
                                 <strong>{{item.name}}</strong><br />
-                                <p ng-repeat="(i, value) in item.stats track by $index">
-                                    {{i}}: {{value - player.equippedItems[item.itemType].stats[i]}} ({{player.equippedItems[item.itemType].stats[i]}})
+                                <p ng-repeat="(i, value) in item.stats.primary">
+                                    {{i}} <br />
+                                    {{value - player.team[player.currentTeamTab].equippedItems[item.itemType].stats.primary[i]}} 
+                                    ({{player.team[player.currentTeamTab].equippedItems[item.itemType].stats.primary[i]}})
                                 </p>
                             </span>
                         </a>
                 </div>
-                <button class="btn btn-default" ng-click="equip(item.itemType, item.id)">Equip</button>
+                <button class="btn btn-default" ng-click="player.equip(item.itemType, item.id)">Equip</button>
             </div>
                 </div>
             </div>
